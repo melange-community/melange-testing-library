@@ -1,0 +1,7 @@
+(library
+ (name melange_testing_library_react)
+ (public_name melange-testing-library.react)
+ (libraries reason-react melange-testing-library.dom)
+ (modes melange)
+ (preprocess
+  (pps melange.ppx)))

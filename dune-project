@@ -1,0 +1,29 @@
+(lang dune 3.8)
+
+(using melange 0.1)
+
+(generate_opam_files true)
+
+(name melange-testing-library)
+
+(source
+ (github melange-community/melange-testing-library))
+
+(authors "David Sancho Moreno <dsnxmoreno@gmail.com>")
+
+(maintainers "David Sancho Moreno <dsnxmoreno@gmail.com>")
+
+(homepage "https://github.com/melange-community/melange-testing-library")
+
+(bug_reports "https://github.com/melange-community/melange-testing-library")
+
+(license "MIT")
+
+(package
+ (name melange-testing-library)
+ (synopsis "Fetch API support for Melange")
+ (depends
+  (ocaml
+   (>= "4.13.0"))
+  reason-react
+  melange))
