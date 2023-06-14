@@ -18,3 +18,6 @@ lib
 _opam
 _build
 .vscode/
+
+_bs-react-testing-library
+_bs-dom-testing-library
