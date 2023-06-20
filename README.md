@@ -4,6 +4,36 @@
 
 Initially forked from [@wyze/bs-dom-testing-library](https://github.com/wyze/bs-dom-testing-library) and [@wyze/bs-react-testing-library](https://github.com/wyze/bs-react-testing-library).
 
+## Install
+
+Install [opam](https://opam.ocaml.org/) package manager.
+
+Then:
+
+```
+opam pin add melange-testing-library.dev git+https://github.com/melange-community/melange-testing-library.git#main
+```
+
+The bindings support the following versions of the `@testing-library/react` and `@testing-library/dom`
+npm packages, which should be installed separately:
+
+```json
+  "devDependencies": {
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/dom": "^7.26.3",
+  }
+```
+
+# Setup
+
+Add `melange-testing-library.dom` and `melange-testing-library.react` to the `libraries` in your `dune` file:
+
+```dune
+; ...
+  (libraries melange-testing-library.dom melange-testing-library.react)
+; ...
+```
+
 <!-- ## Documentation
 
 [**Read the docs**](//testing-library.com/docs/bs-react-testing-library/intro) | [Edit the docs](//github.com/alexkrolick/testing-library-docs)
