@@ -1,263 +1,263 @@
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _abort: (Dom.element, Js.undefined(Js.t({..}))) => unit = "abort";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _animationEnd: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "animationEnd";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _animationIteration: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "animationIteration";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _animationStart: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "animationStart";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _blur: (Dom.element, Js.undefined(Js.t({..}))) => unit = "blur";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _canPlay: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "canPlay";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _canPlayThrough: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "canPlayThrough";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _change: (Dom.element, Js.undefined(Js.t({..}))) => unit = "change";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _click: (Dom.element, Js.undefined(Js.t({..}))) => unit = "click";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _compositionEnd: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "compositionEnd";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _compositionStart: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "compositionStart";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _compositionUpdate: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "compositionUpdate";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _contextMenu: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "contextMenu";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _copy: (Dom.element, Js.undefined(Js.t({..}))) => unit = "copy";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _cut: (Dom.element, Js.undefined(Js.t({..}))) => unit = "cut";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _dblClick: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "dblClick";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _doubleClick: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "doubleClick";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _drag: (Dom.element, Js.undefined(Js.t({..}))) => unit = "drag";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _dragEnd: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "dragEnd";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _dragEnter: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "dragEnter";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _dragExit: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "dragExit";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _dragLeave: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "dragLeave";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _dragOver: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "dragOver";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _dragStart: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "dragStart";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _drop: (Dom.element, Js.undefined(Js.t({..}))) => unit = "drop";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _durationChange: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "durationChange";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _emptied: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "emptied";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _encrypted: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "encrypted";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _ended: (Dom.element, Js.undefined(Js.t({..}))) => unit = "ended";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _error: (Dom.element, Js.undefined(Js.t({..}))) => unit = "error";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _focus: (Dom.element, Js.undefined(Js.t({..}))) => unit = "focus";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _focusIn: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "focusIn";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _focusOut: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "focusOut";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _input: (Dom.element, Js.undefined(Js.t({..}))) => unit = "input";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _invalid: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "invalid";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _keyDown: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "keyDown";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _keyPress: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "keyPress";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _keyUp: (Dom.element, Js.undefined(Js.t({..}))) => unit = "keyUp";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _load: (Dom.element, Js.undefined(Js.t({..}))) => unit = "load";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _loadStart: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "loadStart";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _loadedData: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "loadedData";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _loadedMetadata: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "loadedMetadata";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _mouseDown: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "mouseDown";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _mouseEnter: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "mouseEnter";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _mouseLeave: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "mouseLeave";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _mouseMove: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "mouseMove";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _mouseOut: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "mouseOut";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _mouseOver: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "mouseOver";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _mouseUp: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "mouseUp";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _paste: (Dom.element, Js.undefined(Js.t({..}))) => unit = "paste";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _pause: (Dom.element, Js.undefined(Js.t({..}))) => unit = "pause";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _play: (Dom.element, Js.undefined(Js.t({..}))) => unit = "play";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _playing: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "playing";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _progress: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "progress";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _rateChange: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "rateChange";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _scroll: (Dom.element, Js.undefined(Js.t({..}))) => unit = "scroll";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _seeked: (Dom.element, Js.undefined(Js.t({..}))) => unit = "seeked";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _seeking: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "seeking";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _select: (Dom.element, Js.undefined(Js.t({..}))) => unit = "select";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _stalled: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "stalled";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _submit: (Dom.element, Js.undefined(Js.t({..}))) => unit = "submit";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _suspend: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "suspend";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _timeUpdate: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "timeUpdate";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _touchCancel: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "touchCancel";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _touchEnd: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "touchEnd";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _touchMove: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "touchMove";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _touchStart: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "touchStart";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _transitionEnd: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "transitionEnd";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _volumeChange: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "volumeChange";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _waiting: (Dom.element, Js.undefined(Js.t({..}))) => unit =
   "waiting";
 
-[@bs.module "@testing-library/dom"] [@bs.scope "fireEvent"]
+[@mel.module "@testing-library/dom"] [@mel.scope "fireEvent"]
 external _wheel: (Dom.element, Js.undefined(Js.t({..}))) => unit = "wheel";
 
 let abort = (~eventInit=?, el) =>

@@ -3,5 +3,6 @@
  (wrapped false)
  (public_name melange-testing-library.dom)
  (modes melange)
+ (libraries melange.dom)
  (preprocess
   (pps melange.ppx)))

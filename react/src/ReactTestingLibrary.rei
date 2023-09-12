@@ -83,18 +83,18 @@ type renderOptions = {
   "queries": Js.undefined(queries),
 };
 
-[@bs.module "@testing-library/react"]
+[@mel.module "@testing-library/react"]
 external cleanup: unit => unit = "cleanup";
 
 let act: (unit => unit) => unit;
 
-[@bs.get] external container: renderResult => Dom.element = "container";
+[@mel.get] external container: renderResult => Dom.element = "container";
 
-[@bs.get] external baseElement: renderResult => Dom.element = "baseElement";
+[@mel.get] external baseElement: renderResult => Dom.element = "baseElement";
 
-[@bs.send.pipe: renderResult] external unmount: unit => bool = "unmount";
+[@mel.send.pipe: renderResult] external unmount: unit => bool = "unmount";
 
-[@bs.send.pipe: renderResult]
+[@mel.send.pipe: renderResult]
 external asFragment: unit => Dom.element = "asFragment";
 
 // ByLabelText
@@ -681,7 +681,7 @@ let findAllByTestId:
   ) =>
   Js.Promise.t(array(Dom.element));
 
-[@bs.send.pipe: renderResult]
+[@mel.send.pipe: renderResult]
 external rerender: React.element => unit = "rerender";
 
 let render:
