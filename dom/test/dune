@@ -1,3 +1,5 @@
+(dirs :standard __snapshots__)
+
 (melange.emit
  (target test)
  (alias test)
@@ -6,5 +8,6 @@
   melange-webapi
   melange-jest.jest
   bisect_ppx.runtime_melange)
+ (runtime_deps __snapshots__/DomTestingLibrary_test.js.snap)
  (preprocess
   (pps melange.ppx)))
