@@ -1,1 +1,12 @@
-(dirs dom react)
+(dirs :standard \ node_modules)
+
+(rule
+ (alias runtest)
+ (deps (alias_rec test))
+ ; doesn't work :_(
+ ; (targets
+ ;  %{project_root}/dom/test/test/dom/test/__snapshots__/DomTestingLibrary_test.js.snap
+ ;  %{project_root}/react/test/test/react/test/__snapshots__/ReactTestingLibrary_test.js.snap)
+ (mode promote)
+ (action
+  (run npx jest)))

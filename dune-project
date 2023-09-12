@@ -23,7 +23,13 @@
  (name melange-testing-library)
  (synopsis "Fetch API support for Melange")
  (depends
-  (ocaml
-   (>= "4.13.0"))
+  ocaml
+  (melange
+   (>= "2.0.0"))
   reason-react
-  melange))
+  (melange-jest :with-test)
+  (opam-check-npm-deps :with-test) ; todo: use with-dev-setup once opam 2.2 is out
+  (bisect_ppx
+   (and
+    :with-test
+    (>= "2.5.0")))))

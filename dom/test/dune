@@ -1,0 +1,10 @@
+(melange.emit
+ (target test)
+ (alias test)
+ (libraries
+  melange_testing_library_dom
+  melange-webapi
+  melange-jest.jest
+  bisect_ppx.runtime_melange)
+ (preprocess
+  (pps melange.ppx)))

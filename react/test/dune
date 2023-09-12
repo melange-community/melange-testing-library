@@ -1,0 +1,10 @@
+(melange.emit
+ (target test)
+ (alias test)
+ (libraries
+  melange_testing_library_react
+  melange-jest.jest
+  bisect_ppx.runtime_melange
+  reason-react)
+ (preprocess
+  (pps melange.ppx reason-react-ppx)))
