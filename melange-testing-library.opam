@@ -37,12 +37,8 @@ depexts: [
   ["@testing-library/dom"] {npm-version = "^7.26.3"}
 ]
 pin-depends: [
-  [ "melange.2.0.0"         "git+https://github.com/melange-re/melange.git#e114ad55d185badeb32b3c766c9ab547495eac1b" ]
-  [ "reason.3.10.0"         "git+https://github.com/reasonml/reason.git#972261dab3b651ff8ab9b8b9fcc32940595073dc" ]
-  [ "reason-react.dev"      "git+https://github.com/reasonml/reason-react.git#2e99c8ee87cefe241b698c191c74226da54cf9db" ]
-  [ "reason-react-ppx.dev"  "git+https://github.com/reasonml/reason-react.git#2e99c8ee87cefe241b698c191c74226da54cf9db" ]
-  [ "melange-jest.dev"      "git+https://github.com/melange-community/melange-jest.git#acb6ef50beef3c486805d616b90aa7b56b51172d" ]
-  [ "melange-webapi.dev"    "git+https://github.com/melange-community/melange-webapi.git#96dc1e2a867624d18050fad25cf1c71af7a098e1" ]
-  [ "melange-fetch.dev"     "git+https://github.com/melange-community/melange-fetch.git#796f941b6b85eb7e6182ac6e4f40708bfde7a9a9" ]
+  [ "melange-jest.dev"      "git+https://github.com/melange-community/melange-jest.git#80716114011fe781ea6242344dce35835792ffeb" ]
+  [ "melange-webapi.dev"    "git+https://github.com/melange-community/melange-webapi.git#1f53fc044e49b4c63e52881b555ea29bec14291c" ]
+  [ "melange-fetch.dev"     "git+https://github.com/melange-community/melange-fetch.git#c23f34e5f21de2dd6bec78aef3f253ab0a3f01b4" ]
   [ "bisect_ppx.dev"        "git+https://github.com/jchavarri/bisect_ppx.git#a14c5b5cd4564d2992dd1b14238922029bc1b1d7" ]
 ]
