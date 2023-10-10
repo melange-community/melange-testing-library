@@ -1,0 +1,151 @@
+{
+  "nodes": {
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1694529238,
+        "narHash": "sha256-zsNZZGTGnMOf9YpHKJqMSsa0dXbfmxeoJ7xHlrt+xmY=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "ff7b65b44d01cf9ba6a71320833626af21126384",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "melange-compiler-libs": {
+      "inputs": {
+        "flake-utils": [
+          "melange-src",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "melange-src",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1695779252,
+        "narHash": "sha256-/tlUGkM4jXEF+FG0xe0I51qY7XLBd3db2m4kpBGg264=",
+        "owner": "melange-re",
+        "repo": "melange-compiler-libs",
+        "rev": "eb8207c1b6744180095184194dfd843e06f9fad1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "melange-re",
+        "repo": "melange-compiler-libs",
+        "type": "github"
+      }
+    },
+    "melange-src": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "melange-compiler-libs": "melange-compiler-libs",
+        "nix-filter": [
+          "nix-filter"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1696756708,
+        "narHash": "sha256-+4l14c4cYdYVt5WfMRU66vdj2wUL66r/lg9ZXHhbZJg=",
+        "owner": "melange-re",
+        "repo": "melange",
+        "rev": "2ff08be262f113fc8d28b66c272502c6f403399c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "melange-re",
+        "repo": "melange",
+        "type": "github"
+      }
+    },
+    "nix-filter": {
+      "locked": {
+        "lastModified": 1694857738,
+        "narHash": "sha256-bxxNyLHjhu0N8T3REINXQ2ZkJco0ABFPn6PIe2QUfqo=",
+        "owner": "numtide",
+        "repo": "nix-filter",
+        "rev": "41fd48e00c22b4ced525af521ead8792402de0ea",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "nix-filter",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1696894742,
+        "narHash": "sha256-Ee9sHSkAVWbuHUSRP4MVyefGlyxxEzIf62cbfujTQ8I=",
+        "owner": "nix-ocaml",
+        "repo": "nix-overlays",
+        "rev": "a6a66ed0edfd8ecc39bb3a049197d598d7c8052e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-ocaml",
+        "repo": "nix-overlays",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1696826630,
+        "narHash": "sha256-oGU94vo6pkzGbaSsPHjpHtOUg6b7nL8v3xATnrcw3cQ=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "5a9c737c587d2c34d63c5b3cb53c6ab0705bdf4f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "5a9c737c587d2c34d63c5b3cb53c6ab0705bdf4f",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "melange-src": "melange-src",
+        "nix-filter": "nix-filter",
+        "nixpkgs": "nixpkgs"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
