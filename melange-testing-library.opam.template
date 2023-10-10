@@ -1,0 +1,10 @@
+depexts: [
+  ["@testing-library/react"] {npm-version = "^11.1.0"}
+  ["@testing-library/dom"] {npm-version = "^7.26.3"}
+]
+pin-depends: [
+  [ "melange-jest.dev"      "git+https://github.com/melange-community/melange-jest.git#80716114011fe781ea6242344dce35835792ffeb" ]
+  [ "melange-webapi.dev"    "git+https://github.com/melange-community/melange-webapi.git#1f53fc044e49b4c63e52881b555ea29bec14291c" ]
+  [ "melange-fetch.dev"     "git+https://github.com/melange-community/melange-fetch.git#c23f34e5f21de2dd6bec78aef3f253ab0a3f01b4" ]
+  [ "bisect_ppx.dev"        "git+https://github.com/jchavarri/bisect_ppx.git#a14c5b5cd4564d2992dd1b14238922029bc1b1d7" ]
+]

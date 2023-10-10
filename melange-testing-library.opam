@@ -8,9 +8,12 @@ homepage: "https://github.com/melange-community/melange-testing-library"
 bug-reports: "https://github.com/melange-community/melange-testing-library"
 depends: [
   "dune" {>= "3.8"}
-  "ocaml" {>= "4.13.0"}
+  "ocaml"
+  "melange" {>= "2.0.0"}
   "reason-react"
-  "melange"
+  "melange-jest" {with-test}
+  "opam-check-npm-deps" {with-test}
+  "bisect_ppx" {with-test & >= "2.5.0"}
   "odoc" {with-doc}
 ]
 build: [
@@ -29,3 +32,13 @@ build: [
 ]
 dev-repo:
   "git+https://github.com/melange-community/melange-testing-library.git"
+depexts: [
+  ["@testing-library/react"] {npm-version = "^11.1.0"}
+  ["@testing-library/dom"] {npm-version = "^7.26.3"}
+]
+pin-depends: [
+  [ "melange-jest.dev"      "git+https://github.com/melange-community/melange-jest.git#80716114011fe781ea6242344dce35835792ffeb" ]
+  [ "melange-webapi.dev"    "git+https://github.com/melange-community/melange-webapi.git#1f53fc044e49b4c63e52881b555ea29bec14291c" ]
+  [ "melange-fetch.dev"     "git+https://github.com/melange-community/melange-fetch.git#c23f34e5f21de2dd6bec78aef3f253ab0a3f01b4" ]
+  [ "bisect_ppx.dev"        "git+https://github.com/jchavarri/bisect_ppx.git#a14c5b5cd4564d2992dd1b14238922029bc1b1d7" ]
+]

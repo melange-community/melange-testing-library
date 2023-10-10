@@ -5,10 +5,10 @@ open Jest;
 open Webapi.Dom;
 open Webapi.Dom.Element;
 
-[@bs.get] external tagName: Dom.element => string = "tagName";
-[@bs.get] external name: Dom.element => string = "name";
+[@mel.get] external tagName: Dom.element => string = "tagName";
+[@mel.get] external name: Dom.element => string = "name";
 
-[@bs.val] external setTimeout: (unit => unit, int) => float = "setTimeout";
+external setTimeout: (unit => unit, int) => float = "setTimeout";
 
 let render = html => {
   let body = Document.createElement("body", document);
@@ -27,7 +27,7 @@ afterEach(() =>
   }
 );
 
-afterAll(Bisect.Runtime.write_coverage_data);
+afterAll(Bisect_melange.Runtime.write_coverage_data);
 
 describe("DomTestingLibrary", () => {
   open DomTestingLibrary;
@@ -132,7 +132,7 @@ describe("DomTestingLibrary", () => {
         render(
           {|<section aria-labelledby="section-one-header"><h3 id="section-one-header">Section One!</h3><p>some content</p></section>|},
         )
-        |> getByLabelText(~matcher=`RegExp([%bs.re "/\\w!/"]))
+        |> getByLabelText(~matcher=`RegExp([%mel.re "/\\w!/"]))
         |> expect
         |> toMatchSnapshot
       );
@@ -141,7 +141,7 @@ describe("DomTestingLibrary", () => {
         render(
           {|<section aria-labelledby="section-one-header"><h3 id="section-one-header">Section One!</h3><p>some content</p></section>|},
         )
-        |> getAllByLabelText(~matcher=`RegExp([%bs.re "/\\w!/"]))
+        |> getAllByLabelText(~matcher=`RegExp([%mel.re "/\\w!/"]))
         |> expect
         |> toMatchSnapshot
       );
@@ -150,7 +150,7 @@ describe("DomTestingLibrary", () => {
         render(
           {|<section aria-labelledby="section-one-header"><h3 id="section-one-header">Section One!</h3><p>some content</p></section>|},
         )
-        |> queryByLabelText(~matcher=`RegExp([%bs.re "/\\w!/"]))
+        |> queryByLabelText(~matcher=`RegExp([%mel.re "/\\w!/"]))
         |> expect
         |> toMatchSnapshot
       );
@@ -159,7 +159,7 @@ describe("DomTestingLibrary", () => {
         render(
           {|<section aria-labelledby="section-one-header"><h3 id="section-one-header">Section One!</h3><p>some content</p></section>|},
         )
-        |> queryAllByLabelText(~matcher=`RegExp([%bs.re "/\\w!/"]))
+        |> queryAllByLabelText(~matcher=`RegExp([%mel.re "/\\w!/"]))
         |> expect
         |> toMatchSnapshot
       );
@@ -168,7 +168,7 @@ describe("DomTestingLibrary", () => {
         render(
           {|<section aria-labelledby="section-one-header"><h3 id="section-one-header">Section One!</h3><p>some content</p></section>|},
         )
-        |> findByLabelText(~matcher=`RegExp([%bs.re "/\\w!/"]))
+        |> findByLabelText(~matcher=`RegExp([%mel.re "/\\w!/"]))
         |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
       );
 
@@ -176,7 +176,7 @@ describe("DomTestingLibrary", () => {
         render(
           {|<section aria-labelledby="section-one-header"><h3 id="section-one-header">Section One!</h3><p>some content</p></section>|},
         )
-        |> findAllByLabelText(~matcher=`RegExp([%bs.re "/\\w!/"]))
+        |> findAllByLabelText(~matcher=`RegExp([%mel.re "/\\w!/"]))
         |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
       );
     });
@@ -282,41 +282,41 @@ describe("DomTestingLibrary", () => {
     describe("regex matcher", () => {
       test("get works", () =>
         render({|<input type="text" placeholder="Enter something" />|})
-        |> getByPlaceholderText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> getByPlaceholderText(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       test("getAll works", () =>
         render({|<input type="text" placeholder="Enter something" />|})
-        |> getAllByPlaceholderText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> getAllByPlaceholderText(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       test("query works", () =>
         render({|<input type="text" placeholder="Enter something" />|})
-        |> queryByPlaceholderText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> queryByPlaceholderText(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       test("queryAll works", () =>
         render({|<input type="text" placeholder="Enter something" />|})
-        |> queryAllByPlaceholderText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> queryAllByPlaceholderText(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       testPromise("find works", () =>
         render({|<input type="text" placeholder="Enter something" />|})
-        |> findByPlaceholderText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> findByPlaceholderText(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
       );
 
       testPromise("findAll works", () =>
         render({|<input type="text" placeholder="Enter something" />|})
-        |> findAllByPlaceholderText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> findAllByPlaceholderText(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
       );
     });
@@ -434,41 +434,41 @@ describe("DomTestingLibrary", () => {
     describe("regex matcher", () => {
       test("get works", () =>
         render({|<p data-testid="world">World!</p>|})
-        |> getByText(~matcher=`RegExp([%bs.re "/\\w!/"]))
+        |> getByText(~matcher=`RegExp([%mel.re "/\\w!/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       test("getAll works", () =>
         render({|<p data-testid="world">World!</p>|})
-        |> getAllByText(~matcher=`RegExp([%bs.re "/\\w!/"]))
+        |> getAllByText(~matcher=`RegExp([%mel.re "/\\w!/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       test("query works", () =>
         render({|<p data-testid="world">World!</p>|})
-        |> queryByText(~matcher=`RegExp([%bs.re "/\\w!/"]))
+        |> queryByText(~matcher=`RegExp([%mel.re "/\\w!/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       test("queryAll works", () =>
         render({|<p data-testid="world">World!</p>|})
-        |> queryAllByText(~matcher=`RegExp([%bs.re "/\\w!/"]))
+        |> queryAllByText(~matcher=`RegExp([%mel.re "/\\w!/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       testPromise("find works", () =>
         render({|<p data-testid="world">World!</p>|})
-        |> findByText(~matcher=`RegExp([%bs.re "/\\w!/"]))
+        |> findByText(~matcher=`RegExp([%mel.re "/\\w!/"]))
         |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
       );
 
       testPromise("findAll works", () =>
         render({|<p data-testid="world">World!</p>|})
-        |> findAllByText(~matcher=`RegExp([%bs.re "/\\w!/"]))
+        |> findAllByText(~matcher=`RegExp([%mel.re "/\\w!/"]))
         |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
       );
     });
@@ -574,41 +574,41 @@ describe("DomTestingLibrary", () => {
     describe("regex matcher", () => {
       test("get works", () =>
         render({|<img src="" alt="Alt text" />|})
-        |> getByAltText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> getByAltText(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       test("getAll works", () =>
         render({|<img src="" alt="Alt text" />|})
-        |> getAllByAltText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> getAllByAltText(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       test("query works", () =>
         render({|<img src="" alt="Alt text" />|})
-        |> queryByAltText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> queryByAltText(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       test("queryAll works", () =>
         render({|<img src="" alt="Alt text" />|})
-        |> queryAllByAltText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> queryAllByAltText(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       testPromise("find works", () =>
         render({|<img src="" alt="Alt text" />|})
-        |> findByAltText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> findByAltText(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
       );
 
       testPromise("findAll works", () =>
         render({|<img src="" alt="Alt text" />|})
-        |> findAllByAltText(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> findAllByAltText(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
       );
     });
@@ -714,41 +714,41 @@ describe("DomTestingLibrary", () => {
     describe("regexp matcher", () => {
       test("get works", () =>
         render({|<b title="greeting">Hello,</b>|})
-        |> getByTitle(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> getByTitle(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       test("getAll works", () =>
         render({|<b title="greeting">Hello,</b>|})
-        |> getAllByTitle(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> getAllByTitle(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       test("query works", () =>
         render({|<b title="greeting">Hello,</b>|})
-        |> queryByTitle(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> queryByTitle(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       test("queryAll works", () =>
         render({|<b title="greeting">Hello,</b>|})
-        |> queryAllByTitle(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> queryAllByTitle(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       testPromise("find works", () =>
         render({|<b title="greeting">Hello,</b>|})
-        |> findByTitle(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> findByTitle(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
       );
 
       testPromise("findAll works", () =>
         render({|<b title="greeting">Hello,</b>|})
-        |> findAllByTitle(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> findAllByTitle(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
       );
     });
@@ -854,41 +854,41 @@ describe("DomTestingLibrary", () => {
     describe("regex matcher", () => {
       test("get works", () =>
         render({|<input type="text" value="Some value" />|})
-        |> getByDisplayValue(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> getByDisplayValue(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       test("getAll works", () =>
         render({|<input type="text" value="Some value" />|})
-        |> getAllByDisplayValue(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> getAllByDisplayValue(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       test("query works", () =>
         render({|<input type="text" value="Some value" />|})
-        |> queryByDisplayValue(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> queryByDisplayValue(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       test("queryAll works", () =>
         render({|<input type="text" value="Some value" />|})
-        |> queryAllByDisplayValue(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> queryAllByDisplayValue(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       testPromise("find works", () =>
         render({|<input type="text" value="Some value" />|})
-        |> findByDisplayValue(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> findByDisplayValue(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
       );
 
       testPromise("findAll works", () =>
         render({|<input type="text" value="Some value" />|})
-        |> findAllByDisplayValue(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> findAllByDisplayValue(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
       );
     });
@@ -992,41 +992,41 @@ describe("DomTestingLibrary", () => {
     describe("regex matcher", () => {
       test("get works", () =>
         render({|<button>World!</button>|})
-        |> getByRole(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> getByRole(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       test("getAll works", () =>
         render({|<button>World!</button>|})
-        |> getAllByRole(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> getAllByRole(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       test("query works", () =>
         render({|<button>World!</button>|})
-        |> queryByRole(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> queryByRole(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       test("queryAll works", () =>
         render({|<button>World!</button>|})
-        |> queryAllByRole(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> queryAllByRole(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       testPromise("find works", () =>
         render({|<button>World!</button>|})
-        |> findByRole(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> findByRole(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
       );
 
       testPromise("findAll works", () =>
         render({|<button>World!</button>|})
-        |> findAllByRole(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> findAllByRole(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
       );
     });
@@ -1139,41 +1139,41 @@ describe("DomTestingLibrary", () => {
     describe("regex matcher", () => {
       test("get works", () =>
         render({|<p data-testid="world">World!</p>|})
-        |> getByTestId(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> getByTestId(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       test("getAll works", () =>
         render({|<p data-testid="world">World!</p>|})
-        |> getAllByTestId(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> getAllByTestId(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       test("query works", () =>
         render({|<p data-testid="world">World!</p>|})
-        |> queryByTestId(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> queryByTestId(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       test("queryAll works", () =>
         render({|<p data-testid="world">World!</p>|})
-        |> queryAllByTestId(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> queryAllByTestId(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> expect
         |> toMatchSnapshot
       );
 
       testPromise("find works", () =>
         render({|<p data-testid="world">World!</p>|})
-        |> findByTestId(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> findByTestId(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
       );
 
       testPromise("findAll works", () =>
         render({|<p data-testid="world">World!</p>|})
-        |> findAllByTestId(~matcher=`RegExp([%bs.re "/\\w+/"]))
+        |> findAllByTestId(~matcher=`RegExp([%mel.re "/\\w+/"]))
         |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
       );
     });
