@@ -21,7 +21,7 @@
 
 (package
  (name melange-testing-library)
- (synopsis "Fetch API support for Melange")
+ (synopsis "Melange bindings for testing-library (dom-testing-library and react-testing-library)")
  (depends
   ocaml
   (melange
