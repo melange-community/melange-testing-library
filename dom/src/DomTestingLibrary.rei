@@ -7,7 +7,7 @@ module ByLabelTextQuery: {
     "exact": Js.undefined(bool),
     "normalizer": Js.undefined(string => string),
   };
-  [@bs.obj]
+  [@mel.obj]
   external makeOptions:
     (
       ~selector: string=?,
@@ -23,7 +23,7 @@ module ByPlaceholderTextQuery: {
     "exact": Js.undefined(bool),
     "normalizer": Js.undefined(string => string),
   };
-  [@bs.obj]
+  [@mel.obj]
   external makeOptions:
     (~exact: bool=?, ~normalizer: string => string=?, unit) => options;
 };
@@ -35,7 +35,7 @@ module ByTextQuery: {
     "ignore": Js.undefined(string),
     "normalizer": Js.undefined(string => string),
   };
-  [@bs.obj]
+  [@mel.obj]
   external makeOptions:
     (
       ~exact: bool=?,
@@ -52,7 +52,7 @@ module ByAltTextQuery: {
     "exact": Js.undefined(bool),
     "normalizer": Js.undefined(string => string),
   };
-  [@bs.obj]
+  [@mel.obj]
   external makeOptions:
     (~exact: bool=?, ~normalizer: string => string=?, unit) => options;
 };
@@ -62,7 +62,7 @@ module ByTitleQuery: {
     "exact": Js.undefined(bool),
     "normalizer": Js.undefined(string => string),
   };
-  [@bs.obj]
+  [@mel.obj]
   external makeOptions:
     (~exact: bool=?, ~normalizer: string => string=?, unit) => options;
 };
@@ -72,7 +72,7 @@ module ByDisplayValueQuery: {
     "exact": Js.undefined(bool),
     "normalizer": Js.undefined(string => string),
   };
-  [@bs.obj]
+  [@mel.obj]
   external makeOptions:
     (~exact: bool=?, ~normalizer: string => string=?, unit) => options;
 };
@@ -91,7 +91,7 @@ module ByRoleQuery: {
     "selected": Js.undefined(bool),
     "trim": Js.undefined(bool),
   };
-  [@bs.obj]
+  [@mel.obj]
   external makeOptions:
     (
       ~checked: bool=?,
@@ -115,7 +115,7 @@ module ByTestIdQuery: {
     "exact": Js.undefined(bool),
     "normalizer": Js.undefined(string => string),
   };
-  [@bs.obj]
+  [@mel.obj]
   external makeOptions:
     (~exact: bool=?, ~normalizer: string => string=?, unit) => options;
 };
@@ -130,7 +130,7 @@ module MutationObserver: {
     "childList": Js.undefined(bool),
     "subtree": Js.undefined(bool),
   };
-  [@bs.obj]
+  [@mel.obj]
   external makeOptions:
     (
       ~attributeFilter: array(string)=?,
@@ -155,7 +155,7 @@ module WaitFor: {
     "stackTraceError": Js.undefined(Js.Exn.t),
     "timeout": Js.undefined(int),
   };
-  [@bs.obj]
+  [@mel.obj]
   external makeOptions:
     (
       ~container: Dom.element=?,
@@ -175,7 +175,7 @@ module WaitForElement: {
     "container": Js.undefined(Dom.element),
     "timeout": Js.undefined(int),
   };
-  [@bs.obj]
+  [@mel.obj]
   external makeOptions:
     (
       ~container: Dom.element=?,
@@ -224,7 +224,7 @@ module Configure: {
     "testIdAttribute": Js.undefined(string),
     "throwSuggestions": Js.undefined(bool),
   };
-  [@bs.obj]
+  [@mel.obj]
   external makeOptions:
     (
       ~_disableExpensiveErrorDiagnostics: bool=?,
@@ -251,7 +251,7 @@ let configure:
   ) =>
   unit;
 
-[@bs.module "@testing-library/dom"]
+[@mel.module "@testing-library/dom"]
 external getNodeText: Dom.element => string = "getNodeText";
 
 /**

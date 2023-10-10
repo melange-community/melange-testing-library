@@ -10,7 +10,7 @@ module MutationObserver = {
     "subtree": Js.undefined(bool),
   };
 
-  [@bs.obj]
+  [@mel.obj]
   external makeOptions:
     (
       ~attributeFilter: array(string)=?,
@@ -37,7 +37,7 @@ module WaitFor = {
     "timeout": Js.undefined(int),
   };
 
-  [@bs.obj]
+  [@mel.obj]
   external makeOptions:
     (
       ~container: Dom.element=?,
@@ -59,7 +59,7 @@ module WaitForElement = {
     "timeout": Js.undefined(int),
   };
 
-  [@bs.obj]
+  [@mel.obj]
   external makeOptions:
     (
       ~container: Dom.element=?,
@@ -70,7 +70,7 @@ module WaitForElement = {
     options;
 };
 
-[@bs.module "@testing-library/dom"]
+[@mel.module "@testing-library/dom"]
 external _waitFor:
   (unit => unit, Js.undefined(WaitFor.options)) => Js.Promise.t('a) =
   "waitFor";
@@ -78,7 +78,7 @@ external _waitFor:
 let waitFor = (~callback, ~options=?, ()) =>
   _waitFor(callback, Js.Undefined.fromOption(options));
 
-[@bs.module "@testing-library/dom"]
+[@mel.module "@testing-library/dom"]
 external _waitForPromise:
   (unit => Js.Promise.t('a), Js.undefined(WaitFor.options)) =>
   Js.Promise.t('b) =
@@ -87,7 +87,7 @@ external _waitForPromise:
 let waitForPromise = (~callback, ~options=?, ()) =>
   _waitForPromise(callback, Js.Undefined.fromOption(options));
 
-[@bs.module "@testing-library/dom"]
+[@mel.module "@testing-library/dom"]
 external _waitForElement:
   (Js.undefined(unit => 'a), Js.undefined(WaitForElement.options)) =>
   Js.Promise.t('a) =
@@ -99,10 +99,10 @@ let waitForElement = (~callback=?, ~options=?, ()) =>
     Js.Undefined.fromOption(options),
   );
 
-[@bs.module "@testing-library/dom"]
+[@mel.module "@testing-library/dom"]
 external _waitForElementToBeRemoved:
   (
-    ~callback: [@bs.unwrap] [ | `Func(unit => 'a) | `Value('a)],
+    ~callback: [@mel.unwrap] [ | `Func(unit => 'a) | `Value('a)],
     Js.undefined(WaitFor.options)
   ) =>
   Js.Promise.t(unit) =
@@ -111,13 +111,13 @@ external _waitForElementToBeRemoved:
 let waitForElementToBeRemoved = (~callback, ~options=?, ()) =>
   _waitForElementToBeRemoved(~callback, Js.Undefined.fromOption(options));
 
-[@bs.module "@testing-library/dom"]
+[@mel.module "@testing-library/dom"]
 external _prettyDOM: (Dom.element, Js.undefined(int)) => string = "prettyDOM";
 
 let prettyDOM = (~maxLength=?, element) =>
   _prettyDOM(element, Js.Undefined.fromOption(maxLength));
 
-[@bs.module "@testing-library/dom"]
+[@mel.module "@testing-library/dom"]
 external _logDOM: (Dom.element, Js.undefined(int)) => unit = "logDOM";
 
 let logDOM = (~maxLength=?, element) =>
@@ -138,7 +138,7 @@ module Configure = {
     "throwSuggestions": Js.undefined(bool),
   };
 
-  [@bs.obj]
+  [@mel.obj]
   external makeOptions:
     (
       ~_disableExpensiveErrorDiagnostics: bool=?,
@@ -156,10 +156,10 @@ module Configure = {
     options;
 };
 
-[@bs.module "@testing-library/dom"]
+[@mel.module "@testing-library/dom"]
 external configureWithFn: (Js.t({..}) => Js.t({..})) => unit = "configure";
 
-[@bs.module "@testing-library/dom"]
+[@mel.module "@testing-library/dom"]
 external configureWithObject: Configure.options => unit = "configure";
 
 let configure =
