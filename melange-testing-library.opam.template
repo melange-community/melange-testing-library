@@ -3,5 +3,5 @@ depexts: [
   ["@testing-library/dom"] {npm-version = "^7.26.3"}
 ]
 pin-depends: [
-  [ "bisect_ppx.dev"        "git+https://github.com/jchavarri/bisect_ppx.git#a14c5b5cd4564d2992dd1b14238922029bc1b1d7" ]
+  [ "bisect_ppx.dev"        "git+https://github.com/jchavarri/bisect_ppx.git#a0c2375ca20beceb55e53776e03812def3bc32ba" ]
 ]
