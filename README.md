@@ -10,8 +10,8 @@ Install [opam](https://opam.ocaml.org/) package manager.
 
 Then:
 
-```
-opam pin add melange-testing-library.dev git+https://github.com/melange-community/melange-testing-library.git#main
+```sh
+opam install melange-testing-library
 ```
 
 The bindings support the following versions of the `@testing-library/react` and `@testing-library/dom`
@@ -28,7 +28,7 @@ npm packages, which should be installed separately:
 
 Add `melange-testing-library.dom` and `melange-testing-library.react` to the `libraries` in your `dune` file:
 
-```dune
+```lisp
 ; ...
   (libraries melange-testing-library.dom melange-testing-library.react)
 ; ...
