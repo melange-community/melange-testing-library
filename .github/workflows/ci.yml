@@ -28,27 +28,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Load opam cache when not Windows
-        if: runner.os != 'Windows'
-        id: opam-cache
-        uses: actions/cache/restore@v3
-        with:
-          path: ~/.opam
-          key: opam-${{ matrix.os }}-${{ matrix.ocaml-compiler }}-${{ hashFiles('**.opam') }}
-
-      - name: Load opam cache when Windows
-        if: runner.os == 'Windows'
-        id: opam-cache-windows
-        uses: actions/cache/restore@v3
-        with:
-          path: _opam
-          key: opam-${{ matrix.os }}-${{ matrix.ocaml-compiler }}-${{ hashFiles('**.opam') }}
-
       - name: Use OCaml ${{ matrix.ocaml-compiler }}
         uses: ocaml/setup-ocaml@v2
         with:
           ocaml-compiler: ${{ matrix.ocaml-compiler }}
-          dune-cache: true
+          opam-depext: false
 
       - name: Use Node.js
         uses: actions/setup-node@v3
