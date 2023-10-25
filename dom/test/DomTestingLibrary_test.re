@@ -27,7 +27,7 @@ afterEach(() =>
   }
 );
 
-afterAll(Bisect_melange.Runtime.write_coverage_data);
+afterAll(Bisect.Runtime.write_coverage_data);
 
 describe("DomTestingLibrary", () => {
   open DomTestingLibrary;
