@@ -35,7 +35,7 @@ dev-repo:
   "git+https://github.com/melange-community/melange-testing-library.git"
 depexts: [
   ["@testing-library/react"] {npm-version = "^13.0.0"}
-  ["@testing-library/dom"] {npm-version = "^7.26.3"}
+  ["@testing-library/dom"] {npm-version = "^8.0.0"}
 ]
 pin-depends: [
   [ "reason-react.dev"      "git+https://github.com/reasonml/reason-react.git#7ca984c9a406b01e906fda1898f705f135fad202" ]

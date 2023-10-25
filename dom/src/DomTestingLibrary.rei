@@ -194,10 +194,6 @@ let waitForPromise:
   (~callback: unit => Js.Promise.t('a), ~options: WaitFor.options=?, unit) =>
   Js.Promise.t('b);
 
-let waitForElement:
-  (~callback: unit => 'a=?, ~options: WaitForElement.options=?, unit) =>
-  Js.Promise.t('a);
-
 let waitForElementToBeRemoved:
   (
     ~callback: [ | `Func(unit => 'a) | `Value('a)],
