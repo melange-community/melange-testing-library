@@ -48,3 +48,10 @@ format-check: ## Checks if format is correct
 .PHONY: watch
 watch: ## Watch for the filesystem and rebuild on every change
 	$(DUNE) build --watch
+
+.PHONY: coverage
+coverage: ## Generate coverage report in _coverage folder
+	$(DUNE) clean
+	BISECT_ENABLE=yes $(DUNE) build
+	$(DUNE) runtest || true # Jest will fail because dune & melange produce duplicated snapshots files with runtime_deps so it marks them as obsolete
+	opam exec -- bisect-ppx-report html
