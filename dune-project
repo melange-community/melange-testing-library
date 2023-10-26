@@ -21,13 +21,14 @@
 
 (package
  (name melange-testing-library)
- (synopsis "Melange bindings for testing-library (dom-testing-library and react-testing-library)")
+ (synopsis
+  "Melange bindings for testing-library (dom-testing-library and react-testing-library)")
  (depends
   ocaml
   (melange
    (>= "2.0.0"))
   reason-react
-  melange-webapi
+  (melange-webapi :with-test)
   (melange-jest :with-test)
   (opam-check-npm-deps :with-test) ; todo: use with-dev-setup once opam 2.2 is out
   (bisect_ppx
