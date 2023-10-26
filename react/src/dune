@@ -5,4 +5,4 @@
  (wrapped false)
  (modes melange)
  (preprocess
-  (pps melange.ppx)))
+  (pps bisect_ppx melange.ppx)))

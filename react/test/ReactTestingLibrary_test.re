@@ -2,7 +2,7 @@
 
 open Jest;
 
-afterAll(Bisect_melange.Runtime.write_coverage_data);
+afterAll(Bisect.Runtime.write_coverage_data);
 
 module Greeting = {
   [@react.component]

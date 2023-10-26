@@ -48,3 +48,14 @@ format-check: ## Checks if format is correct
 .PHONY: watch
 watch: ## Watch for the filesystem and rebuild on every change
 	$(DUNE) build --watch
+
+.PHONY: test
+test: ## Run tests
+	$(DUNE) test
+
+.PHONY: coverage
+coverage: ## Generate coverage report in _coverage folder
+	$(DUNE) clean
+	BISECT_ENABLE=yes $(DUNE) build
+	$(DUNE) runtest
+	opam exec -- bisect-ppx-report html
