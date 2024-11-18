@@ -1,8 +1,8 @@
 # melange-testing-library
 
-> [Melange](https://github.com/melange-re/melange) bindings for [testing-library](https://testing-library.com/) (**[dom-testing-library](https://github.com/testing-library/dom-testing-library)** and **[react-testing-library](https://github.com/testing-library/react-testing-library)**)
+[Melange](https://github.com/melange-re/melange) bindings for [testing-library](https://testing-library.com/) (**[dom-testing-library](https://github.com/testing-library/dom-testing-library)** and **[react-testing-library](https://github.com/testing-library/react-testing-library)**)
 
-Initially forked from [@wyze/bs-dom-testing-library](https://github.com/wyze/bs-dom-testing-library) and [@wyze/bs-react-testing-library](https://github.com/wyze/bs-react-testing-library).
+> Forked from [@wyze/bs-dom-testing-library](https://github.com/wyze/bs-dom-testing-library) and [@wyze/bs-react-testing-library](https://github.com/wyze/bs-react-testing-library).
 
 ## Install
 
