@@ -1,14 +1,10 @@
 {
-    "devDependencies": {
-      "jest": "^26.5.2",
-      "react": "^17.0.0",
-      "react-dom": "^17.0.0",
-      "@testing-library/react": "^11.1.0",
-      "@testing-library/dom": "^7.26.3",
-      "@testing-library/jest-dom": "^5.10.0"
-    },
-    "jest": {
-      "testEnvironment": "node"
-    }
+  "devDependencies": {
+    "jest": "^26.5.2",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/dom": "^7.26.3",
+    "@testing-library/jest-dom": "^5.10.0"
   }
-  
+}
