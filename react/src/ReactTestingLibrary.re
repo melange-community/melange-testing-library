@@ -36,28 +36,35 @@ external _render: (React.element, renderOptions) => renderResult = "render";
 
 [@mel.get] external baseElement: renderResult => Dom.element = "baseElement";
 
-[@mel.send.pipe: renderResult]
-external _debug: (Js.undefined(Dom.element), Js.undefined(int)) => unit =
+[@mel.send]
+external _debug:
+  (Js.undefined(Dom.element), Js.undefined(int), [@mel.this] renderResult) =>
+  unit =
   "debug";
 
-[@mel.send.pipe: renderResult] external unmount: unit => bool = "unmount";
+[@mel.send]
+external unmount: (unit, [@mel.this] renderResult) => bool = "unmount";
 
-[@mel.send.pipe: renderResult]
-external rerender: React.element => unit = "rerender";
+[@mel.send]
+external rerender: (React.element, [@mel.this] renderResult) => unit =
+  "rerender";
 
-[@mel.send.pipe: renderResult]
-external asFragment: unit => Dom.element = "asFragment";
+[@mel.send]
+external asFragment: (unit, [@mel.this] renderResult) => Dom.element =
+  "asFragment";
 
 // ByLabelText
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _getByLabelText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByLabelTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByLabelTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   Dom.element =
   "getByLabelText";
@@ -69,15 +76,17 @@ let getByLabelText = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _getAllByLabelText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByLabelTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByLabelTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   array(Dom.element) =
   "getAllByLabelText";
@@ -89,15 +98,17 @@ let getAllByLabelText = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _queryByLabelText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByLabelTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByLabelTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.null(Dom.element) =
   "queryByLabelText";
@@ -109,15 +120,17 @@ let queryByLabelText = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _queryAllByLabelText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByLabelTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByLabelTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   array(Dom.element) =
   "queryAllByLabelText";
@@ -129,15 +142,17 @@ let queryAllByLabelText = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _findByLabelText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByLabelTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByLabelTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.Promise.t(Dom.element) =
   "findByLabelText";
@@ -149,15 +164,17 @@ let findByLabelText = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _findAllByLabelText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByLabelTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByLabelTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.Promise.t(array(Dom.element)) =
   "findAllByLabelText";
@@ -170,15 +187,17 @@ let findAllByLabelText = (~matcher, ~options=?, result) =>
   );
 
 // ByPlaceholderText
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _getByPlaceholderText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByPlaceholderTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByPlaceholderTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   Dom.element =
   "getByPlaceholderText";
@@ -190,15 +209,17 @@ let getByPlaceholderText = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _getAllByPlaceholderText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByPlaceholderTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByPlaceholderTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   array(Dom.element) =
   "getAllByPlaceholderText";
@@ -210,15 +231,17 @@ let getAllByPlaceholderText = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _queryByPlaceholderText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByPlaceholderTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByPlaceholderTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.null(Dom.element) =
   "queryByPlaceholderText";
@@ -230,15 +253,17 @@ let queryByPlaceholderText = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _queryAllByPlaceholderText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByPlaceholderTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByPlaceholderTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   array(Dom.element) =
   "queryAllByPlaceholderText";
@@ -250,15 +275,17 @@ let queryAllByPlaceholderText = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _findByPlaceholderText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByPlaceholderTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByPlaceholderTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.Promise.t(Dom.element) =
   "findByPlaceholderText";
@@ -270,15 +297,17 @@ let findByPlaceholderText = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _findAllByPlaceholderText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByPlaceholderTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByPlaceholderTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.Promise.t(array(Dom.element)) =
   "findAllByPlaceholderText";
@@ -291,15 +320,17 @@ let findAllByPlaceholderText = (~matcher, ~options=?, result) =>
   );
 
 // ByText
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _getByText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   Dom.element =
   "getByText";
@@ -307,15 +338,17 @@ external _getByText:
 let getByText = (~matcher, ~options=?, result) =>
   _getByText(result, ~matcher, ~options=Js.Undefined.fromOption(options));
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _getAllByText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   array(Dom.element) =
   "getAllByText";
@@ -323,15 +356,17 @@ external _getAllByText:
 let getAllByText = (~matcher, ~options=?, result) =>
   _getAllByText(result, ~matcher, ~options=Js.Undefined.fromOption(options));
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _queryByText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.null(Dom.element) =
   "queryByText";
@@ -339,15 +374,17 @@ external _queryByText:
 let queryByText = (~matcher, ~options=?, result) =>
   _queryByText(result, ~matcher, ~options=Js.Undefined.fromOption(options));
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _queryAllByText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   array(Dom.element) =
   "queryAllByText";
@@ -359,15 +396,17 @@ let queryAllByText = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _findByText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.Promise.t(Dom.element) =
   "findByText";
@@ -375,15 +414,17 @@ external _findByText:
 let findByText = (~matcher, ~options=?, result) =>
   _findByText(result, ~matcher, ~options=Js.Undefined.fromOption(options));
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _findAllByText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.Promise.t(array(Dom.element)) =
   "findAllByText";
@@ -396,15 +437,17 @@ let findAllByText = (~matcher, ~options=?, result) =>
   );
 
 // ByAltText
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _getByAltText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByAltTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByAltTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   Dom.element =
   "getByAltText";
@@ -412,15 +455,17 @@ external _getByAltText:
 let getByAltText = (~matcher, ~options=?, result) =>
   _getByAltText(result, ~matcher, ~options=Js.Undefined.fromOption(options));
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _getAllByAltText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByAltTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByAltTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   array(Dom.element) =
   "getAllByAltText";
@@ -432,15 +477,17 @@ let getAllByAltText = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _queryByAltText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByAltTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByAltTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.null(Dom.element) =
   "queryByAltText";
@@ -452,15 +499,17 @@ let queryByAltText = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _queryAllByAltText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByAltTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByAltTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   array(Dom.element) =
   "queryAllByAltText";
@@ -472,15 +521,17 @@ let queryAllByAltText = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _findByAltText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByAltTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByAltTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.Promise.t(Dom.element) =
   "findByAltText";
@@ -492,15 +543,17 @@ let findByAltText = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _findAllByAltText:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByAltTextQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByAltTextQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.Promise.t(array(Dom.element)) =
   "findAllByAltText";
@@ -513,15 +566,17 @@ let findAllByAltText = (~matcher, ~options=?, result) =>
   );
 
 // ByTitle
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _getByTitle:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByTitleQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByTitleQuery.options),
+    [@mel.this] renderResult
   ) =>
   Dom.element =
   "getByTitle";
@@ -529,15 +584,17 @@ external _getByTitle:
 let getByTitle = (~matcher, ~options=?, result) =>
   _getByTitle(result, ~matcher, ~options=Js.Undefined.fromOption(options));
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _getAllByTitle:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByTitleQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByTitleQuery.options),
+    [@mel.this] renderResult
   ) =>
   array(Dom.element) =
   "getAllByTitle";
@@ -549,15 +606,17 @@ let getAllByTitle = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _queryByTitle:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByTitleQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByTitleQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.null(Dom.element) =
   "queryByTitle";
@@ -565,15 +624,17 @@ external _queryByTitle:
 let queryByTitle = (~matcher, ~options=?, result) =>
   _queryByTitle(result, ~matcher, ~options=Js.Undefined.fromOption(options));
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _queryAllByTitle:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByTitleQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByTitleQuery.options),
+    [@mel.this] renderResult
   ) =>
   array(Dom.element) =
   "queryAllByTitle";
@@ -585,15 +646,17 @@ let queryAllByTitle = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _findByTitle:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByTitleQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByTitleQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.Promise.t(Dom.element) =
   "findByTitle";
@@ -601,15 +664,17 @@ external _findByTitle:
 let findByTitle = (~matcher, ~options=?, result) =>
   _findByTitle(result, ~matcher, ~options=Js.Undefined.fromOption(options));
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _findAllByTitle:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByTitleQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByTitleQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.Promise.t(array(Dom.element)) =
   "findAllByTitle";
@@ -622,15 +687,17 @@ let findAllByTitle = (~matcher, ~options=?, result) =>
   );
 
 // ByDisplayValue
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _getByDisplayValue:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByDisplayValueQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByDisplayValueQuery.options),
+    [@mel.this] renderResult
   ) =>
   Dom.element =
   "getByDisplayValue";
@@ -642,15 +709,17 @@ let getByDisplayValue = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _getAllByDisplayValue:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByDisplayValueQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByDisplayValueQuery.options),
+    [@mel.this] renderResult
   ) =>
   array(Dom.element) =
   "getAllByDisplayValue";
@@ -662,15 +731,17 @@ let getAllByDisplayValue = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _queryByDisplayValue:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByDisplayValueQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByDisplayValueQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.null(Dom.element) =
   "queryByDisplayValue";
@@ -682,15 +753,17 @@ let queryByDisplayValue = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _queryAllByDisplayValue:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByDisplayValueQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByDisplayValueQuery.options),
+    [@mel.this] renderResult
   ) =>
   array(Dom.element) =
   "queryAllByDisplayValue";
@@ -702,15 +775,17 @@ let queryAllByDisplayValue = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _findByDisplayValue:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByDisplayValueQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByDisplayValueQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.Promise.t(Dom.element) =
   "findByDisplayValue";
@@ -722,15 +797,17 @@ let findByDisplayValue = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _findAllByDisplayValue:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByDisplayValueQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByDisplayValueQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.Promise.t(array(Dom.element)) =
   "findAllByDisplayValue";
@@ -743,15 +820,17 @@ let findAllByDisplayValue = (~matcher, ~options=?, result) =>
   );
 
 // ByRole
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _getByRole:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByRoleQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByRoleQuery.options),
+    [@mel.this] renderResult
   ) =>
   Dom.element =
   "getByRole";
@@ -759,15 +838,17 @@ external _getByRole:
 let getByRole = (~matcher, ~options=?, result) =>
   _getByRole(result, ~matcher, ~options=Js.Undefined.fromOption(options));
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _getAllByRole:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByRoleQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByRoleQuery.options),
+    [@mel.this] renderResult
   ) =>
   array(Dom.element) =
   "getAllByRole";
@@ -775,15 +856,17 @@ external _getAllByRole:
 let getAllByRole = (~matcher, ~options=?, result) =>
   _getAllByRole(result, ~matcher, ~options=Js.Undefined.fromOption(options));
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _queryByRole:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByRoleQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByRoleQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.null(Dom.element) =
   "queryByRole";
@@ -791,15 +874,17 @@ external _queryByRole:
 let queryByRole = (~matcher, ~options=?, result) =>
   _queryByRole(result, ~matcher, ~options=Js.Undefined.fromOption(options));
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _queryAllByRole:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByRoleQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByRoleQuery.options),
+    [@mel.this] renderResult
   ) =>
   array(Dom.element) =
   "queryAllByRole";
@@ -811,15 +896,17 @@ let queryAllByRole = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _findByRole:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByRoleQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByRoleQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.Promise.t(Dom.element) =
   "findByRole";
@@ -827,15 +914,17 @@ external _findByRole:
 let findByRole = (~matcher, ~options=?, result) =>
   _findByRole(result, ~matcher, ~options=Js.Undefined.fromOption(options));
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _findAllByRole:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByRoleQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByRoleQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.Promise.t(array(Dom.element)) =
   "findAllByRole";
@@ -848,15 +937,17 @@ let findAllByRole = (~matcher, ~options=?, result) =>
   );
 
 // ByTestId
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _getByTestId:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByTestIdQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByTestIdQuery.options),
+    [@mel.this] renderResult
   ) =>
   Dom.element =
   "getByTestId";
@@ -864,15 +955,17 @@ external _getByTestId:
 let getByTestId = (~matcher, ~options=?, result) =>
   _getByTestId(result, ~matcher, ~options=Js.Undefined.fromOption(options));
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _getAllByTestId:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByTestIdQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByTestIdQuery.options),
+    [@mel.this] renderResult
   ) =>
   array(Dom.element) =
   "getAllByTestId";
@@ -884,15 +977,17 @@ let getAllByTestId = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _queryByTestId:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByTestIdQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByTestIdQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.null(Dom.element) =
   "queryByTestId";
@@ -904,15 +999,17 @@ let queryByTestId = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _queryAllByTestId:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByTestIdQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByTestIdQuery.options),
+    [@mel.this] renderResult
   ) =>
   array(Dom.element) =
   "queryAllByTestId";
@@ -924,15 +1021,17 @@ let queryAllByTestId = (~matcher, ~options=?, result) =>
     ~options=Js.Undefined.fromOption(options),
   );
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _findByTestId:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByTestIdQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByTestIdQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.Promise.t(Dom.element) =
   "findByTestId";
@@ -940,15 +1039,17 @@ external _findByTestId:
 let findByTestId = (~matcher, ~options=?, result) =>
   _findByTestId(result, ~matcher, ~options=Js.Undefined.fromOption(options));
 
-[@mel.send.pipe: renderResult]
+[@mel.send]
 external _findAllByTestId:
   (
-    ~matcher: [@mel.unwrap] [
-                | `Str(string)
-                | `RegExp(Js.Re.t)
-                | `Func((string, Dom.element) => bool)
-              ],
-    ~options: Js.undefined(ByTestIdQuery.options)
+    ~matcher:
+      [@mel.unwrap] [
+        | `Str(string)
+        | `RegExp(Js.Re.t)
+        | `Func((string, Dom.element) => bool)
+      ],
+    ~options: Js.undefined(ByTestIdQuery.options),
+    [@mel.this] renderResult
   ) =>
   Js.Promise.t(array(Dom.element)) =
   "findAllByTestId";

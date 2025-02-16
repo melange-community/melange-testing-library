@@ -10,7 +10,7 @@ bug-reports: "https://github.com/melange-community/melange-testing-library"
 depends: [
   "dune" {>= "3.8"}
   "ocaml"
-  "melange" {>= "2.0.0"}
+  "melange" {>= "5.0.0"}
   "reason-react"
   "melange-jest" {with-test}
   "opam-check-npm-deps" {with-test}
