@@ -25,7 +25,7 @@
  (depends
   ocaml
   (melange
-   (>= "2.0.0"))
+   (>= "5.0.0"))
   reason-react
   (melange-jest :with-test)
   (opam-check-npm-deps :with-test) ; todo: use with-dev-setup once opam 2.2 is out
