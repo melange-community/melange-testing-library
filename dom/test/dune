@@ -4,6 +4,7 @@
  (target test)
  (alias test)
  (libraries
+  melange.belt
   melange_testing_library_dom
   melange-webapi
   melange-jest.jest

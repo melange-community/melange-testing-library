@@ -1243,7 +1243,7 @@ describe("DomTestingLibrary", () => {
   describe("waitFor", () => {
     testPromise("works", () => {
       let number = ref(10);
-      let timeout = Js.Math.floor(Js.Math.random() *. 300.);
+      let timeout = Js.Math.floor_int(Js.Math.random() *. 300.);
       let _ = setTimeout(() => number := 100, timeout);
       let callback = () => assert(number^ == 100);
 
@@ -1253,7 +1253,7 @@ describe("DomTestingLibrary", () => {
 
     testPromise("supports container option", () => {
       let number = ref(0);
-      let timeout = Js.Math.floor(Js.Math.random() *. 300.);
+      let timeout = Js.Math.floor_int(Js.Math.random() *. 300.);
       let _ = setTimeout(() => number := 100, timeout);
       let callback = () => assert(number^ == 10);
       let body =
@@ -1348,7 +1348,7 @@ describe("DomTestingLibrary", () => {
   describe("waitForPromise", () => {
     testPromise("works", () => {
       let number = ref(10);
-      let timeout = Js.Math.floor(Js.Math.random() *. 300.);
+      let timeout = Js.Math.floor_int(Js.Math.random() *. 300.);
       let _ = setTimeout(() => number := 100, timeout);
       let callback = () => Js.Promise.resolve(assert(number^ == 100));
 
