@@ -764,9 +764,7 @@ describe("ReactTestingLibrary", () => {
   test("act works", () => {
     let result = <Counter /> |> render;
 
-    act(() =>
-      result |> getByText(~matcher=`Str("+")) |> FireEvent.click |> ignore
-    );
+    act(() => result |> getByText(~matcher=`Str("+")) |> FireEvent.click);
 
     result
     |> getByText(~matcher=`Str("Count: 1"))
