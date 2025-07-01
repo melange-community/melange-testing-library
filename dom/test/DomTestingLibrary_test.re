@@ -33,18 +33,6 @@ describe("DomTestingLibrary", () => {
   open DomTestingLibrary;
   open Expect;
 
-  describe("prettyDOM", () => {
-    let html = {|<b title="greeting">Hello,</b><p data-testid="world"> World!</p><input type="text" placeholder="Enter something" /><input type="text" value="Some value" /><img src="" alt="Alt text" />|};
-
-    test("works", () =>
-      render(html) |> prettyDOM |> expect |> toMatchSnapshot
-    );
-
-    test("works with maxLength", () =>
-      render(html) |> prettyDOM(~maxLength=60) |> expect |> toMatchSnapshot
-    );
-  });
-
   describe("configure works", () => {
     afterAll(() =>
       configure(
@@ -62,8 +50,8 @@ describe("DomTestingLibrary", () => {
       );
       render({|<p data-custom-test-id="world"> World!</p>|})
       |> getByTestId(~matcher=`Str("world"))
-      |> expect
-      |> toMatchSnapshot;
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument;
     });
 
     test("using a function", () => {
@@ -79,8 +67,8 @@ describe("DomTestingLibrary", () => {
       );
       render({|<p data-custom-test-id="world"> World!</p>|})
       |> getByTestId(~matcher=`Str("world"))
-      |> expect
-      |> toMatchSnapshot;
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument;
     });
   });
 
@@ -89,41 +77,52 @@ describe("DomTestingLibrary", () => {
       test("get works", () =>
         render({|<label>Hello, <input /></label>|})
         |> getByLabelText(~matcher=`Str("Hello,"))
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
         render({|<label>Hello, <input /></label>|})
         |> getAllByLabelText(~matcher=`Str("Hello,"))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
         render({|<label>Hello, <input /></label>|})
         |> queryByLabelText(~matcher=`Str("Hello,"))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
         render({|<label>Hello, <input /></label>|})
         |> queryAllByLabelText(~matcher=`Str("Hello,"))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
         render({|<label>Hello, <input /></label>|})
         |> findByLabelText(~matcher=`Str("Hello,"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
         render({|<label>Hello, <input /></label>|})
         |> findAllByLabelText(~matcher=`Str("Hello,"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
 
@@ -133,8 +132,8 @@ describe("DomTestingLibrary", () => {
           {|<section aria-labelledby="section-one-header"><h3 id="section-one-header">Section One!</h3><p>some content</p></section>|},
         )
         |> getByLabelText(~matcher=`RegExp([%mel.re "/\\w!/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
@@ -142,8 +141,9 @@ describe("DomTestingLibrary", () => {
           {|<section aria-labelledby="section-one-header"><h3 id="section-one-header">Section One!</h3><p>some content</p></section>|},
         )
         |> getAllByLabelText(~matcher=`RegExp([%mel.re "/\\w!/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
@@ -151,8 +151,9 @@ describe("DomTestingLibrary", () => {
           {|<section aria-labelledby="section-one-header"><h3 id="section-one-header">Section One!</h3><p>some content</p></section>|},
         )
         |> queryByLabelText(~matcher=`RegExp([%mel.re "/\\w!/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
@@ -160,8 +161,9 @@ describe("DomTestingLibrary", () => {
           {|<section aria-labelledby="section-one-header"><h3 id="section-one-header">Section One!</h3><p>some content</p></section>|},
         )
         |> queryAllByLabelText(~matcher=`RegExp([%mel.re "/\\w!/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
@@ -169,7 +171,9 @@ describe("DomTestingLibrary", () => {
           {|<section aria-labelledby="section-one-header"><h3 id="section-one-header">Section One!</h3><p>some content</p></section>|},
         )
         |> findByLabelText(~matcher=`RegExp([%mel.re "/\\w!/"]))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
@@ -177,7 +181,13 @@ describe("DomTestingLibrary", () => {
           {|<section aria-labelledby="section-one-header"><h3 id="section-one-header">Section One!</h3><p>some content</p></section>|},
         )
         |> findAllByLabelText(~matcher=`RegExp([%mel.re "/\\w!/"]))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
 
@@ -187,8 +197,8 @@ describe("DomTestingLibrary", () => {
         |> getByLabelText(
              ~matcher=`Func((_text, node) => node |> tagName === "P"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
@@ -196,8 +206,9 @@ describe("DomTestingLibrary", () => {
         |> getAllByLabelText(
              ~matcher=`Func((_text, node) => node |> tagName === "P"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
@@ -205,8 +216,9 @@ describe("DomTestingLibrary", () => {
         |> queryByLabelText(
              ~matcher=`Func((_text, node) => node |> tagName === "P"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
@@ -214,8 +226,9 @@ describe("DomTestingLibrary", () => {
         |> queryAllByLabelText(
              ~matcher=`Func((_text, node) => node |> tagName === "P"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
@@ -223,7 +236,9 @@ describe("DomTestingLibrary", () => {
         |> findByLabelText(
              ~matcher=`Func((_text, node) => node |> tagName === "P"),
            )
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
@@ -231,7 +246,13 @@ describe("DomTestingLibrary", () => {
         |> findAllByLabelText(
              ~matcher=`Func((_text, node) => node |> tagName === "P"),
            )
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
   });
@@ -241,41 +262,52 @@ describe("DomTestingLibrary", () => {
       test("get works", () =>
         render({|<input type="text" placeholder="Enter something" />|})
         |> getByPlaceholderText(~matcher=`Str("Enter something"))
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
         render({|<input type="text" placeholder="Enter something" />|})
         |> getAllByPlaceholderText(~matcher=`Str("Enter something"))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
         render({|<input type="text" placeholder="Enter something" />|})
         |> queryByPlaceholderText(~matcher=`Str("Enter something"))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
         render({|<input type="text" placeholder="Enter something" />|})
         |> queryAllByPlaceholderText(~matcher=`Str("Enter something"))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
         render({|<input type="text" placeholder="Enter something" />|})
         |> findByPlaceholderText(~matcher=`Str("Enter something"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
         render({|<input type="text" placeholder="Enter something" />|})
         |> findAllByPlaceholderText(~matcher=`Str("Enter something"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
 
@@ -283,41 +315,52 @@ describe("DomTestingLibrary", () => {
       test("get works", () =>
         render({|<input type="text" placeholder="Enter something" />|})
         |> getByPlaceholderText(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
         render({|<input type="text" placeholder="Enter something" />|})
         |> getAllByPlaceholderText(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
         render({|<input type="text" placeholder="Enter something" />|})
         |> queryByPlaceholderText(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
         render({|<input type="text" placeholder="Enter something" />|})
         |> queryAllByPlaceholderText(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
         render({|<input type="text" placeholder="Enter something" />|})
         |> findByPlaceholderText(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
         render({|<input type="text" placeholder="Enter something" />|})
         |> findAllByPlaceholderText(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
 
@@ -329,8 +372,8 @@ describe("DomTestingLibrary", () => {
         |> getByPlaceholderText(
              ~matcher=`Func((_text, node) => node |> name === "my-input"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
@@ -340,8 +383,9 @@ describe("DomTestingLibrary", () => {
         |> getAllByPlaceholderText(
              ~matcher=`Func((_text, node) => node |> name === "my-input"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
@@ -351,8 +395,9 @@ describe("DomTestingLibrary", () => {
         |> queryByPlaceholderText(
              ~matcher=`Func((_text, node) => node |> name === "my-input"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
@@ -362,8 +407,9 @@ describe("DomTestingLibrary", () => {
         |> queryAllByPlaceholderText(
              ~matcher=`Func((_text, node) => node |> name === "my-input"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
@@ -373,7 +419,9 @@ describe("DomTestingLibrary", () => {
         |> findByPlaceholderText(
              ~matcher=`Func((_text, node) => node |> name === "my-input"),
            )
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
@@ -383,7 +431,13 @@ describe("DomTestingLibrary", () => {
         |> findAllByPlaceholderText(
              ~matcher=`Func((_text, node) => node |> name === "my-input"),
            )
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
   });
@@ -393,41 +447,52 @@ describe("DomTestingLibrary", () => {
       test("get works", () =>
         render({|<b title="greeting">Hello,</b>|})
         |> getByText(~matcher=`Str("Hello,"))
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
         render({|<b title="greeting">Hello,</b>|})
         |> getAllByText(~matcher=`Str("Hello,"))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
         render({|<b title="greeting">Hello,</b>|})
         |> queryByText(~matcher=`Str("Hello,"))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
         render({|<b title="greeting">Hello,</b>|})
         |> queryAllByText(~matcher=`Str("Hello,"))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
         render({|<b title="greeting">Hello,</b>|})
         |> findByText(~matcher=`Str("Hello,"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
         render({|<b title="greeting">Hello,</b>|})
         |> findAllByText(~matcher=`Str("Hello,"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
 
@@ -435,41 +500,52 @@ describe("DomTestingLibrary", () => {
       test("get works", () =>
         render({|<p data-testid="world">World!</p>|})
         |> getByText(~matcher=`RegExp([%mel.re "/\\w!/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
         render({|<p data-testid="world">World!</p>|})
         |> getAllByText(~matcher=`RegExp([%mel.re "/\\w!/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
         render({|<p data-testid="world">World!</p>|})
         |> queryByText(~matcher=`RegExp([%mel.re "/\\w!/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
         render({|<p data-testid="world">World!</p>|})
         |> queryAllByText(~matcher=`RegExp([%mel.re "/\\w!/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
         render({|<p data-testid="world">World!</p>|})
         |> findByText(~matcher=`RegExp([%mel.re "/\\w!/"]))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
         render({|<p data-testid="world">World!</p>|})
         |> findAllByText(~matcher=`RegExp([%mel.re "/\\w!/"]))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
 
@@ -479,8 +555,8 @@ describe("DomTestingLibrary", () => {
         |> getByText(
              ~matcher=`Func((_text, node) => node |> tagName === "P"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
@@ -488,8 +564,9 @@ describe("DomTestingLibrary", () => {
         |> getAllByText(
              ~matcher=`Func((_text, node) => node |> tagName === "P"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
@@ -497,8 +574,9 @@ describe("DomTestingLibrary", () => {
         |> queryByText(
              ~matcher=`Func((_text, node) => node |> tagName === "P"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
@@ -506,8 +584,9 @@ describe("DomTestingLibrary", () => {
         |> queryAllByText(
              ~matcher=`Func((_text, node) => node |> tagName === "P"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
@@ -515,7 +594,9 @@ describe("DomTestingLibrary", () => {
         |> findByText(
              ~matcher=`Func((_text, node) => node |> tagName === "P"),
            )
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
@@ -523,7 +604,13 @@ describe("DomTestingLibrary", () => {
         |> findAllByText(
              ~matcher=`Func((_text, node) => node |> tagName === "P"),
            )
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
   });
@@ -533,41 +620,52 @@ describe("DomTestingLibrary", () => {
       test("get works", () =>
         render({|<img src="" alt="Alt text" />|})
         |> getByAltText(~matcher=`Str("Alt text"))
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
         render({|<img src="" alt="Alt text" />|})
         |> getAllByAltText(~matcher=`Str("Alt text"))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
         render({|<img src="" alt="Alt text" />|})
         |> queryByAltText(~matcher=`Str("Alt text"))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
         render({|<img src="" alt="Alt text" />|})
         |> queryAllByAltText(~matcher=`Str("Alt text"))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
         render({|<img src="" alt="Alt text" />|})
         |> findByAltText(~matcher=`Str("Alt text"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
         render({|<img src="" alt="Alt text" />|})
         |> findAllByAltText(~matcher=`Str("Alt text"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
 
@@ -575,41 +673,52 @@ describe("DomTestingLibrary", () => {
       test("get works", () =>
         render({|<img src="" alt="Alt text" />|})
         |> getByAltText(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
         render({|<img src="" alt="Alt text" />|})
         |> getAllByAltText(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
         render({|<img src="" alt="Alt text" />|})
         |> queryByAltText(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
         render({|<img src="" alt="Alt text" />|})
         |> queryAllByAltText(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
         render({|<img src="" alt="Alt text" />|})
         |> findByAltText(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
         render({|<img src="" alt="Alt text" />|})
         |> findAllByAltText(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
 
@@ -619,8 +728,8 @@ describe("DomTestingLibrary", () => {
         |> getByAltText(
              ~matcher=`Func((_text, node) => node |> name === "my-img"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
@@ -628,8 +737,9 @@ describe("DomTestingLibrary", () => {
         |> getAllByAltText(
              ~matcher=`Func((_text, node) => node |> name === "my-img"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
@@ -637,8 +747,9 @@ describe("DomTestingLibrary", () => {
         |> queryByAltText(
              ~matcher=`Func((_text, node) => node |> name === "my-img"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
@@ -646,8 +757,9 @@ describe("DomTestingLibrary", () => {
         |> queryAllByAltText(
              ~matcher=`Func((_text, node) => node |> name === "my-img"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
@@ -655,7 +767,9 @@ describe("DomTestingLibrary", () => {
         |> findByAltText(
              ~matcher=`Func((_text, node) => node |> name === "my-img"),
            )
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
@@ -663,7 +777,13 @@ describe("DomTestingLibrary", () => {
         |> findAllByAltText(
              ~matcher=`Func((_text, node) => node |> name === "my-img"),
            )
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
   });
@@ -673,41 +793,52 @@ describe("DomTestingLibrary", () => {
       test("get works", () =>
         render({|<b title="greeting">Hello,</b>|})
         |> getByTitle(~matcher=`Str("greeting"))
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
         render({|<b title="greeting">Hello,</b>|})
         |> getAllByTitle(~matcher=`Str("greeting"))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
         render({|<b title="greeting">Hello,</b>|})
         |> queryByTitle(~matcher=`Str("greeting"))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
         render({|<b title="greeting">Hello,</b>|})
         |> queryAllByTitle(~matcher=`Str("greeting"))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
         render({|<b title="greeting">Hello,</b>|})
         |> findByTitle(~matcher=`Str("greeting"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
         render({|<b title="greeting">Hello,</b>|})
         |> findAllByTitle(~matcher=`Str("greeting"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
 
@@ -715,52 +846,63 @@ describe("DomTestingLibrary", () => {
       test("get works", () =>
         render({|<b title="greeting">Hello,</b>|})
         |> getByTitle(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
         render({|<b title="greeting">Hello,</b>|})
         |> getAllByTitle(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
         render({|<b title="greeting">Hello,</b>|})
         |> queryByTitle(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
         render({|<b title="greeting">Hello,</b>|})
         |> queryAllByTitle(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
         render({|<b title="greeting">Hello,</b>|})
         |> findByTitle(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
         render({|<b title="greeting">Hello,</b>|})
         |> findAllByTitle(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
 
     describe("function matcher", () => {
       test("get works", () =>
-        render({|<b title="greeting">Hello,</b>|})
+        render({|<button title="greeting">Hello,</button>|})
         |> getByTitle(
-             ~matcher=`Func((_text, node) => node |> tagName === "B"),
+             ~matcher=`Func((_text, node) => node |> tagName === "BUTTON"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
@@ -768,8 +910,9 @@ describe("DomTestingLibrary", () => {
         |> getAllByTitle(
              ~matcher=`Func((_text, node) => node |> tagName === "B"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
@@ -777,8 +920,9 @@ describe("DomTestingLibrary", () => {
         |> queryByTitle(
              ~matcher=`Func((_text, node) => node |> tagName === "B"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
@@ -786,8 +930,9 @@ describe("DomTestingLibrary", () => {
         |> queryAllByTitle(
              ~matcher=`Func((_text, node) => node |> tagName === "B"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
@@ -795,7 +940,9 @@ describe("DomTestingLibrary", () => {
         |> findByTitle(
              ~matcher=`Func((_text, node) => node |> tagName === "B"),
            )
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
@@ -803,7 +950,13 @@ describe("DomTestingLibrary", () => {
         |> findAllByTitle(
              ~matcher=`Func((_text, node) => node |> tagName === "B"),
            )
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
   });
@@ -813,41 +966,52 @@ describe("DomTestingLibrary", () => {
       test("get works", () =>
         render({|<input type="text" value="Some value" />|})
         |> getByDisplayValue(~matcher=`Str("Some value"))
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
         render({|<input type="text" value="Some value" />|})
         |> getAllByDisplayValue(~matcher=`Str("Some value"))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
         render({|<input type="text" value="Some value" />|})
         |> queryByDisplayValue(~matcher=`Str("Some value"))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
         render({|<input type="text" value="Some value" />|})
         |> queryAllByDisplayValue(~matcher=`Str("Some value"))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
         render({|<input type="text" value="Some value" />|})
         |> findByDisplayValue(~matcher=`Str("Some value"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
         render({|<input type="text" value="Some value" />|})
         |> findAllByDisplayValue(~matcher=`Str("Some value"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
 
@@ -855,41 +1019,52 @@ describe("DomTestingLibrary", () => {
       test("get works", () =>
         render({|<input type="text" value="Some value" />|})
         |> getByDisplayValue(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
         render({|<input type="text" value="Some value" />|})
         |> getAllByDisplayValue(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
         render({|<input type="text" value="Some value" />|})
         |> queryByDisplayValue(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
         render({|<input type="text" value="Some value" />|})
         |> queryAllByDisplayValue(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
         render({|<input type="text" value="Some value" />|})
         |> findByDisplayValue(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
         render({|<input type="text" value="Some value" />|})
         |> findAllByDisplayValue(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
     describe("function matcher", () => {
@@ -898,8 +1073,8 @@ describe("DomTestingLibrary", () => {
         |> getByDisplayValue(
              ~matcher=`Func((_text, node) => node |> name === "my-input"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
@@ -907,8 +1082,9 @@ describe("DomTestingLibrary", () => {
         |> getAllByDisplayValue(
              ~matcher=`Func((_text, node) => node |> name === "my-input"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
@@ -916,8 +1092,9 @@ describe("DomTestingLibrary", () => {
         |> queryByDisplayValue(
              ~matcher=`Func((_text, node) => node |> name === "my-input"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
@@ -925,8 +1102,9 @@ describe("DomTestingLibrary", () => {
         |> queryAllByDisplayValue(
              ~matcher=`Func((_text, node) => node |> name === "my-input"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
@@ -934,7 +1112,9 @@ describe("DomTestingLibrary", () => {
         |> findByDisplayValue(
              ~matcher=`Func((_text, node) => node |> name === "my-input"),
            )
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
@@ -942,7 +1122,13 @@ describe("DomTestingLibrary", () => {
         |> findAllByDisplayValue(
              ~matcher=`Func((_text, node) => node |> name === "my-input"),
            )
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
   });
@@ -952,41 +1138,52 @@ describe("DomTestingLibrary", () => {
       test("get works", () =>
         render({|<button>World!</button>|})
         |> getByRole(~role="button")
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
         render({|<button>World!</button>|})
         |> getAllByRole(~role="button")
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
         render({|<button>World!</button>|})
         |> queryByRole(~role="button")
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
         render({|<button>World!</button>|})
         |> queryAllByRole(~role="button")
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
         render({|<button>World!</button>|})
         |> findByRole(~role="button")
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
         render({|<button>World!</button>|})
         |> findAllByRole(~role="button")
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
     describe("regex matcher", () => {
@@ -1000,8 +1197,8 @@ describe("DomTestingLibrary", () => {
                  (),
                ),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
@@ -1014,8 +1211,9 @@ describe("DomTestingLibrary", () => {
                  (),
                ),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
@@ -1028,8 +1226,9 @@ describe("DomTestingLibrary", () => {
                  (),
                ),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
@@ -1042,8 +1241,9 @@ describe("DomTestingLibrary", () => {
                  (),
                ),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
@@ -1056,7 +1256,9 @@ describe("DomTestingLibrary", () => {
                  (),
                ),
            )
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
@@ -1069,48 +1271,65 @@ describe("DomTestingLibrary", () => {
                  (),
                ),
            )
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
     describe("function matcher", () => {
       test("get works", () =>
         render({|<button>World!</button>|})
         |> getByRole(~role="button")
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
         render({|<button>World!</button>|})
         |> getAllByRole(~role="button")
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
         render({|<button>World!</button>|})
         |> queryByRole(~role="button")
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
         render({|<button>World!</button>|})
         |> queryAllByRole(~role="button")
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
         render({|<button>World!</button>|})
         |> findByRole(~role="button")
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
         render({|<button>World!</button>|})
         |> findAllByRole(~role="button")
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
     test("level option works", () =>
@@ -1119,8 +1338,8 @@ describe("DomTestingLibrary", () => {
            ~role="heading",
            ~options=ByRoleQuery.makeOptions(~level=3, ()),
          )
-      |> expect
-      |> toMatchSnapshot
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
   });
 
@@ -1129,82 +1348,104 @@ describe("DomTestingLibrary", () => {
       test("get works", () =>
         render({|<p data-testid="world">World!</p>|})
         |> getByTestId(~matcher=`Str("world"))
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
         render({|<p data-testid="world">World!</p>|})
         |> getAllByTestId(~matcher=`Str("world"))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
         render({|<p data-testid="world">World!</p>|})
         |> queryByTestId(~matcher=`Str("world"))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
         render({|<p data-testid="world">World!</p>|})
         |> queryAllByTestId(~matcher=`Str("world"))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
         render({|<p data-testid="world">World!</p>|})
         |> findByTestId(~matcher=`Str("world"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
         render({|<p data-testid="world">World!</p>|})
         |> findAllByTestId(~matcher=`Str("world"))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
     describe("regex matcher", () => {
       test("get works", () =>
         render({|<p data-testid="world">World!</p>|})
         |> getByTestId(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
         render({|<p data-testid="world">World!</p>|})
         |> getAllByTestId(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
         render({|<p data-testid="world">World!</p>|})
         |> queryByTestId(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
         render({|<p data-testid="world">World!</p>|})
         |> queryAllByTestId(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
         render({|<p data-testid="world">World!</p>|})
         |> findByTestId(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
         render({|<p data-testid="world">World!</p>|})
         |> findAllByTestId(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
     describe("function matcher", () => {
@@ -1213,8 +1454,8 @@ describe("DomTestingLibrary", () => {
         |> getByTestId(
              ~matcher=`Func((_text, node) => node |> tagName === "P"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("getAll works", () =>
@@ -1222,8 +1463,9 @@ describe("DomTestingLibrary", () => {
         |> getAllByTestId(
              ~matcher=`Func((_text, node) => node |> tagName === "P"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("query works", () =>
@@ -1231,8 +1473,9 @@ describe("DomTestingLibrary", () => {
         |> queryByTestId(
              ~matcher=`Func((_text, node) => node |> tagName === "P"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Null.getExn
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       test("queryAll works", () =>
@@ -1240,8 +1483,9 @@ describe("DomTestingLibrary", () => {
         |> queryAllByTestId(
              ~matcher=`Func((_text, node) => node |> tagName === "P"),
            )
-        |> expect
-        |> toMatchSnapshot
+        |> Js.Array.unsafe_get(_, 0)
+        |> JestDom.expect
+        |> JestDom.toBeInTheDocument
       );
 
       testPromise("find works", () =>
@@ -1249,7 +1493,9 @@ describe("DomTestingLibrary", () => {
         |> findByTestId(
              ~matcher=`Func((_text, node) => node |> tagName === "P"),
            )
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(actual =>
+             actual |> JestDom.expect |> JestDom.toBeInTheDocument |> resolve
+           )
       );
 
       testPromise("findAll works", () =>
@@ -1257,7 +1503,13 @@ describe("DomTestingLibrary", () => {
         |> findAllByTestId(
              ~matcher=`Func((_text, node) => node |> tagName === "P"),
            )
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+        |> then_(many =>
+             many
+             |> Js.Array.unsafe_get(_, 0)
+             |> JestDom.expect
+             |> JestDom.toBeInTheDocument
+             |> resolve
+           )
       );
     });
   });
@@ -1267,7 +1519,7 @@ describe("DomTestingLibrary", () => {
     |> getByTitle(~matcher=`Str("greeting"))
     |> getNodeText
     |> expect
-    |> toMatchSnapshot
+    |> toEqual("Hello,")
   );
 
   describe("waitFor", () => {

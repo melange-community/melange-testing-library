@@ -1,13 +1,12 @@
-(dirs :standard __snapshots__)
-
 (melange.emit
  (target test)
  (alias test)
  (libraries
+  reason-react
   melange_testing_library_react
+  melange-webapi
   melange-jest.jest
-  bisect_ppx.runtime_melange
-  reason-react)
- (runtime_deps __snapshots__/ReactTestingLibrary_test.js.snap)
+  melange-jest.jest-dom
+  bisect_ppx.runtime_melange)
  (preprocess
   (pps melange.ppx reason-react-ppx)))

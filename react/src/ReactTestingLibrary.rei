@@ -96,7 +96,7 @@ let act: (unit => unit) => unit;
 external unmount: (unit, [@mel.this] renderResult) => bool = "unmount";
 
 [@mel.send]
-external asFragment: (unit, [@mel.this] renderResult) => Dom.element =
+external asFragment: (unit, [@mel.this] renderResult) => Dom.documentFragment =
   "asFragment";
 
 // ByLabelText
