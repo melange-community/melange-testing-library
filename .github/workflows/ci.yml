@@ -35,7 +35,6 @@ jobs:
         uses: ocaml/setup-ocaml@v3
         with:
           ocaml-compiler: ${{ matrix.ocaml-compiler }}
-          opam-depext: false
 
       - name: Use Node.js
         uses: actions/setup-node@v6
