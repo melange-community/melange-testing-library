@@ -951,90 +951,54 @@ describe("DomTestingLibrary", () => {
     describe("string matcher", () => {
       test("get works", () =>
         render({|<button>World!</button>|})
-        |> getByRole(~matcher=`Str("button"))
+        |> getByRole(~role="button")
         |> expect
         |> toMatchSnapshot
       );
 
       test("getAll works", () =>
         render({|<button>World!</button>|})
-        |> getAllByRole(~matcher=`Str("button"))
+        |> getAllByRole(~role="button")
         |> expect
         |> toMatchSnapshot
       );
 
       test("query works", () =>
         render({|<button>World!</button>|})
-        |> queryByRole(~matcher=`Str("button"))
+        |> queryByRole(~role="button")
         |> expect
         |> toMatchSnapshot
       );
 
       test("queryAll works", () =>
         render({|<button>World!</button>|})
-        |> queryAllByRole(~matcher=`Str("button"))
+        |> queryAllByRole(~role="button")
         |> expect
         |> toMatchSnapshot
       );
 
       testPromise("find works", () =>
         render({|<button>World!</button>|})
-        |> findByRole(~matcher=`Str("button"))
+        |> findByRole(~role="button")
         |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
       );
 
       testPromise("findAll works", () =>
         render({|<button>World!</button>|})
-        |> findAllByRole(~matcher=`Str("button"))
+        |> findAllByRole(~role="button")
         |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
       );
     });
     describe("regex matcher", () => {
       test("get works", () =>
         render({|<button>World!</button>|})
-        |> getByRole(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
-      );
-
-      test("getAll works", () =>
-        render({|<button>World!</button>|})
-        |> getAllByRole(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
-      );
-
-      test("query works", () =>
-        render({|<button>World!</button>|})
-        |> queryByRole(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
-      );
-
-      test("queryAll works", () =>
-        render({|<button>World!</button>|})
-        |> queryAllByRole(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> expect
-        |> toMatchSnapshot
-      );
-
-      testPromise("find works", () =>
-        render({|<button>World!</button>|})
-        |> findByRole(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
-      );
-
-      testPromise("findAll works", () =>
-        render({|<button>World!</button>|})
-        |> findAllByRole(~matcher=`RegExp([%mel.re "/\\w+/"]))
-        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
-      );
-    });
-    describe("function matcher", () => {
-      test("get works", () =>
-        render({|<button>World!</button>|})
         |> getByRole(
-             ~matcher=`Func((_text, node) => node |> tagName === "BUTTON"),
+             ~role="button",
+             ~options=
+               ByRoleQuery.makeOptions(
+                 ~name=`RegExp([%mel.re "/\\w+/"]),
+                 (),
+               ),
            )
         |> expect
         |> toMatchSnapshot
@@ -1043,7 +1007,12 @@ describe("DomTestingLibrary", () => {
       test("getAll works", () =>
         render({|<button>World!</button>|})
         |> getAllByRole(
-             ~matcher=`Func((_text, node) => node |> tagName === "BUTTON"),
+             ~role="button",
+             ~options=
+               ByRoleQuery.makeOptions(
+                 ~name=`RegExp([%mel.re "/\\w+/"]),
+                 (),
+               ),
            )
         |> expect
         |> toMatchSnapshot
@@ -1052,7 +1021,12 @@ describe("DomTestingLibrary", () => {
       test("query works", () =>
         render({|<button>World!</button>|})
         |> queryByRole(
-             ~matcher=`Func((_text, node) => node |> tagName === "BUTTON"),
+             ~role="button",
+             ~options=
+               ByRoleQuery.makeOptions(
+                 ~name=`RegExp([%mel.re "/\\w+/"]),
+                 (),
+               ),
            )
         |> expect
         |> toMatchSnapshot
@@ -1061,7 +1035,12 @@ describe("DomTestingLibrary", () => {
       test("queryAll works", () =>
         render({|<button>World!</button>|})
         |> queryAllByRole(
-             ~matcher=`Func((_text, node) => node |> tagName === "BUTTON"),
+             ~role="button",
+             ~options=
+               ByRoleQuery.makeOptions(
+                 ~name=`RegExp([%mel.re "/\\w+/"]),
+                 (),
+               ),
            )
         |> expect
         |> toMatchSnapshot
@@ -1070,7 +1049,12 @@ describe("DomTestingLibrary", () => {
       testPromise("find works", () =>
         render({|<button>World!</button>|})
         |> findByRole(
-             ~matcher=`Func((_text, node) => node |> tagName === "BUTTON"),
+             ~role="button",
+             ~options=
+               ByRoleQuery.makeOptions(
+                 ~name=`RegExp([%mel.re "/\\w+/"]),
+                 (),
+               ),
            )
         |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
       );
@@ -1078,15 +1062,61 @@ describe("DomTestingLibrary", () => {
       testPromise("findAll works", () =>
         render({|<button>World!</button>|})
         |> findAllByRole(
-             ~matcher=`Func((_text, node) => node |> tagName === "BUTTON"),
+             ~role="button",
+             ~options=
+               ByRoleQuery.makeOptions(
+                 ~name=`RegExp([%mel.re "/\\w+/"]),
+                 (),
+               ),
            )
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+    });
+    describe("function matcher", () => {
+      test("get works", () =>
+        render({|<button>World!</button>|})
+        |> getByRole(~role="button")
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("getAll works", () =>
+        render({|<button>World!</button>|})
+        |> getAllByRole(~role="button")
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("query works", () =>
+        render({|<button>World!</button>|})
+        |> queryByRole(~role="button")
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      test("queryAll works", () =>
+        render({|<button>World!</button>|})
+        |> queryAllByRole(~role="button")
+        |> expect
+        |> toMatchSnapshot
+      );
+
+      testPromise("find works", () =>
+        render({|<button>World!</button>|})
+        |> findByRole(~role="button")
+        |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
+      );
+
+      testPromise("findAll works", () =>
+        render({|<button>World!</button>|})
+        |> findAllByRole(~role="button")
         |> then_(actual => actual |> expect |> toMatchSnapshot |> resolve)
       );
     });
     test("level option works", () =>
       render({|<h3>World!</h3>|})
       |> getByRole(
-           ~matcher=`Str("heading"),
+           ~role="heading",
            ~options=ByRoleQuery.makeOptions(~level=3, ()),
          )
       |> expect
@@ -1309,7 +1339,8 @@ describe("DomTestingLibrary", () => {
         render(
           {|<div data-testid="div"></div><div data-testid="div"></div>|},
         );
-      let callback = `Func(() => queryAllByTestId(~matcher=`Str("div"), body));
+      let callback =
+        `Func(() => queryAllByTestId(~matcher=`Str("div"), body));
       let options = WaitFor.makeOptions(~timeout=200, ());
       let divs = queryAllByTestId(~matcher=`Str("div"), body);
 

@@ -9,7 +9,7 @@ exports[`DomTestingLibrary ByAltText function matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByAltText function matcher findAll works 1`] = `
-Array [
+[
   <img
     alt="Alt text"
     name="my-img"
@@ -27,7 +27,7 @@ exports[`DomTestingLibrary ByAltText function matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByAltText function matcher getAll works 1`] = `
-Array [
+[
   <img
     alt="Alt text"
     name="my-img"
@@ -45,7 +45,7 @@ exports[`DomTestingLibrary ByAltText function matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByAltText function matcher queryAll works 1`] = `
-Array [
+[
   <img
     alt="Alt text"
     name="my-img"
@@ -62,7 +62,7 @@ exports[`DomTestingLibrary ByAltText regex matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByAltText regex matcher findAll works 1`] = `
-Array [
+[
   <img
     alt="Alt text"
     src=""
@@ -78,7 +78,7 @@ exports[`DomTestingLibrary ByAltText regex matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByAltText regex matcher getAll works 1`] = `
-Array [
+[
   <img
     alt="Alt text"
     src=""
@@ -94,7 +94,7 @@ exports[`DomTestingLibrary ByAltText regex matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByAltText regex matcher queryAll works 1`] = `
-Array [
+[
   <img
     alt="Alt text"
     src=""
@@ -110,7 +110,7 @@ exports[`DomTestingLibrary ByAltText string matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByAltText string matcher findAll works 1`] = `
-Array [
+[
   <img
     alt="Alt text"
     src=""
@@ -126,7 +126,7 @@ exports[`DomTestingLibrary ByAltText string matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByAltText string matcher getAll works 1`] = `
-Array [
+[
   <img
     alt="Alt text"
     src=""
@@ -142,7 +142,7 @@ exports[`DomTestingLibrary ByAltText string matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByAltText string matcher queryAll works 1`] = `
-Array [
+[
   <img
     alt="Alt text"
     src=""
@@ -159,7 +159,7 @@ exports[`DomTestingLibrary ByDisplayValue function matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByDisplayValue function matcher findAll works 1`] = `
-Array [
+[
   <input
     name="my-input"
     type="text"
@@ -177,7 +177,7 @@ exports[`DomTestingLibrary ByDisplayValue function matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByDisplayValue function matcher getAll works 1`] = `
-Array [
+[
   <input
     name="my-input"
     type="text"
@@ -195,7 +195,7 @@ exports[`DomTestingLibrary ByDisplayValue function matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByDisplayValue function matcher queryAll works 1`] = `
-Array [
+[
   <input
     name="my-input"
     type="text"
@@ -212,7 +212,7 @@ exports[`DomTestingLibrary ByDisplayValue regex matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByDisplayValue regex matcher findAll works 1`] = `
-Array [
+[
   <input
     type="text"
     value="Some value"
@@ -228,7 +228,7 @@ exports[`DomTestingLibrary ByDisplayValue regex matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByDisplayValue regex matcher getAll works 1`] = `
-Array [
+[
   <input
     type="text"
     value="Some value"
@@ -244,7 +244,7 @@ exports[`DomTestingLibrary ByDisplayValue regex matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByDisplayValue regex matcher queryAll works 1`] = `
-Array [
+[
   <input
     type="text"
     value="Some value"
@@ -260,7 +260,7 @@ exports[`DomTestingLibrary ByDisplayValue string matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByDisplayValue string matcher findAll works 1`] = `
-Array [
+[
   <input
     type="text"
     value="Some value"
@@ -276,7 +276,7 @@ exports[`DomTestingLibrary ByDisplayValue string matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByDisplayValue string matcher getAll works 1`] = `
-Array [
+[
   <input
     type="text"
     value="Some value"
@@ -292,7 +292,7 @@ exports[`DomTestingLibrary ByDisplayValue string matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByDisplayValue string matcher queryAll works 1`] = `
-Array [
+[
   <input
     type="text"
     value="Some value"
@@ -309,7 +309,7 @@ exports[`DomTestingLibrary ByLabelText function matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByLabelText function matcher findAll works 1`] = `
-Array [
+[
   <p
     aria-label="message"
   >
@@ -327,7 +327,7 @@ exports[`DomTestingLibrary ByLabelText function matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByLabelText function matcher getAll works 1`] = `
-Array [
+[
   <p
     aria-label="message"
   >
@@ -345,7 +345,7 @@ exports[`DomTestingLibrary ByLabelText function matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByLabelText function matcher queryAll works 1`] = `
-Array [
+[
   <p
     aria-label="message"
   >
@@ -370,7 +370,7 @@ exports[`DomTestingLibrary ByLabelText regex matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByLabelText regex matcher findAll works 1`] = `
-Array [
+[
   <section
     aria-labelledby="section-one-header"
   >
@@ -402,7 +402,7 @@ exports[`DomTestingLibrary ByLabelText regex matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByLabelText regex matcher getAll works 1`] = `
-Array [
+[
   <section
     aria-labelledby="section-one-header"
   >
@@ -434,7 +434,7 @@ exports[`DomTestingLibrary ByLabelText regex matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByLabelText regex matcher queryAll works 1`] = `
-Array [
+[
   <section
     aria-labelledby="section-one-header"
   >
@@ -453,7 +453,7 @@ Array [
 exports[`DomTestingLibrary ByLabelText string matcher find works 1`] = `<input />`;
 
 exports[`DomTestingLibrary ByLabelText string matcher findAll works 1`] = `
-Array [
+[
   <input />,
 ]
 `;
@@ -461,7 +461,7 @@ Array [
 exports[`DomTestingLibrary ByLabelText string matcher get works 1`] = `<input />`;
 
 exports[`DomTestingLibrary ByLabelText string matcher getAll works 1`] = `
-Array [
+[
   <input />,
 ]
 `;
@@ -469,7 +469,7 @@ Array [
 exports[`DomTestingLibrary ByLabelText string matcher query works 1`] = `<input />`;
 
 exports[`DomTestingLibrary ByLabelText string matcher queryAll works 1`] = `
-Array [
+[
   <input />,
 ]
 `;
@@ -483,7 +483,7 @@ exports[`DomTestingLibrary ByPlaceholderText function matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByPlaceholderText function matcher findAll works 1`] = `
-Array [
+[
   <input
     name="my-input"
     placeholder="Enter something"
@@ -501,7 +501,7 @@ exports[`DomTestingLibrary ByPlaceholderText function matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByPlaceholderText function matcher getAll works 1`] = `
-Array [
+[
   <input
     name="my-input"
     placeholder="Enter something"
@@ -519,7 +519,7 @@ exports[`DomTestingLibrary ByPlaceholderText function matcher query works 1`] = 
 `;
 
 exports[`DomTestingLibrary ByPlaceholderText function matcher queryAll works 1`] = `
-Array [
+[
   <input
     name="my-input"
     placeholder="Enter something"
@@ -536,7 +536,7 @@ exports[`DomTestingLibrary ByPlaceholderText regex matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByPlaceholderText regex matcher findAll works 1`] = `
-Array [
+[
   <input
     placeholder="Enter something"
     type="text"
@@ -552,7 +552,7 @@ exports[`DomTestingLibrary ByPlaceholderText regex matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByPlaceholderText regex matcher getAll works 1`] = `
-Array [
+[
   <input
     placeholder="Enter something"
     type="text"
@@ -568,7 +568,7 @@ exports[`DomTestingLibrary ByPlaceholderText regex matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByPlaceholderText regex matcher queryAll works 1`] = `
-Array [
+[
   <input
     placeholder="Enter something"
     type="text"
@@ -584,7 +584,7 @@ exports[`DomTestingLibrary ByPlaceholderText string matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByPlaceholderText string matcher findAll works 1`] = `
-Array [
+[
   <input
     placeholder="Enter something"
     type="text"
@@ -600,7 +600,7 @@ exports[`DomTestingLibrary ByPlaceholderText string matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByPlaceholderText string matcher getAll works 1`] = `
-Array [
+[
   <input
     placeholder="Enter something"
     type="text"
@@ -616,7 +616,7 @@ exports[`DomTestingLibrary ByPlaceholderText string matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByPlaceholderText string matcher queryAll works 1`] = `
-Array [
+[
   <input
     placeholder="Enter something"
     type="text"
@@ -631,7 +631,7 @@ exports[`DomTestingLibrary ByRole function matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByRole function matcher findAll works 1`] = `
-Array [
+[
   <button>
     World!
   </button>,
@@ -645,7 +645,7 @@ exports[`DomTestingLibrary ByRole function matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByRole function matcher getAll works 1`] = `
-Array [
+[
   <button>
     World!
   </button>,
@@ -659,7 +659,7 @@ exports[`DomTestingLibrary ByRole function matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByRole function matcher queryAll works 1`] = `
-Array [
+[
   <button>
     World!
   </button>,
@@ -679,7 +679,7 @@ exports[`DomTestingLibrary ByRole regex matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByRole regex matcher findAll works 1`] = `
-Array [
+[
   <button>
     World!
   </button>,
@@ -693,7 +693,7 @@ exports[`DomTestingLibrary ByRole regex matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByRole regex matcher getAll works 1`] = `
-Array [
+[
   <button>
     World!
   </button>,
@@ -707,7 +707,7 @@ exports[`DomTestingLibrary ByRole regex matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByRole regex matcher queryAll works 1`] = `
-Array [
+[
   <button>
     World!
   </button>,
@@ -721,7 +721,7 @@ exports[`DomTestingLibrary ByRole string matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByRole string matcher findAll works 1`] = `
-Array [
+[
   <button>
     World!
   </button>,
@@ -735,7 +735,7 @@ exports[`DomTestingLibrary ByRole string matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByRole string matcher getAll works 1`] = `
-Array [
+[
   <button>
     World!
   </button>,
@@ -749,7 +749,7 @@ exports[`DomTestingLibrary ByRole string matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByRole string matcher queryAll works 1`] = `
-Array [
+[
   <button>
     World!
   </button>,
@@ -765,7 +765,7 @@ exports[`DomTestingLibrary ByTestId function matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByTestId function matcher findAll works 1`] = `
-Array [
+[
   <p
     data-testid="world"
   >
@@ -783,7 +783,7 @@ exports[`DomTestingLibrary ByTestId function matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByTestId function matcher getAll works 1`] = `
-Array [
+[
   <p
     data-testid="world"
   >
@@ -801,7 +801,7 @@ exports[`DomTestingLibrary ByTestId function matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByTestId function matcher queryAll works 1`] = `
-Array [
+[
   <p
     data-testid="world"
   >
@@ -819,7 +819,7 @@ exports[`DomTestingLibrary ByTestId regex matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByTestId regex matcher findAll works 1`] = `
-Array [
+[
   <p
     data-testid="world"
   >
@@ -837,7 +837,7 @@ exports[`DomTestingLibrary ByTestId regex matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByTestId regex matcher getAll works 1`] = `
-Array [
+[
   <p
     data-testid="world"
   >
@@ -855,7 +855,7 @@ exports[`DomTestingLibrary ByTestId regex matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByTestId regex matcher queryAll works 1`] = `
-Array [
+[
   <p
     data-testid="world"
   >
@@ -873,7 +873,7 @@ exports[`DomTestingLibrary ByTestId string matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByTestId string matcher findAll works 1`] = `
-Array [
+[
   <p
     data-testid="world"
   >
@@ -891,7 +891,7 @@ exports[`DomTestingLibrary ByTestId string matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByTestId string matcher getAll works 1`] = `
-Array [
+[
   <p
     data-testid="world"
   >
@@ -909,7 +909,7 @@ exports[`DomTestingLibrary ByTestId string matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByTestId string matcher queryAll works 1`] = `
-Array [
+[
   <p
     data-testid="world"
   >
@@ -927,7 +927,7 @@ exports[`DomTestingLibrary ByText function matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByText function matcher findAll works 1`] = `
-Array [
+[
   <p
     data-testid="world"
   >
@@ -945,7 +945,7 @@ exports[`DomTestingLibrary ByText function matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByText function matcher getAll works 1`] = `
-Array [
+[
   <p
     data-testid="world"
   >
@@ -963,7 +963,7 @@ exports[`DomTestingLibrary ByText function matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByText function matcher queryAll works 1`] = `
-Array [
+[
   <p
     data-testid="world"
   >
@@ -981,7 +981,7 @@ exports[`DomTestingLibrary ByText regex matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByText regex matcher findAll works 1`] = `
-Array [
+[
   <p
     data-testid="world"
   >
@@ -999,7 +999,7 @@ exports[`DomTestingLibrary ByText regex matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByText regex matcher getAll works 1`] = `
-Array [
+[
   <p
     data-testid="world"
   >
@@ -1017,7 +1017,7 @@ exports[`DomTestingLibrary ByText regex matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByText regex matcher queryAll works 1`] = `
-Array [
+[
   <p
     data-testid="world"
   >
@@ -1035,7 +1035,7 @@ exports[`DomTestingLibrary ByText string matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByText string matcher findAll works 1`] = `
-Array [
+[
   <b
     title="greeting"
   >
@@ -1053,7 +1053,7 @@ exports[`DomTestingLibrary ByText string matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByText string matcher getAll works 1`] = `
-Array [
+[
   <b
     title="greeting"
   >
@@ -1071,7 +1071,7 @@ exports[`DomTestingLibrary ByText string matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByText string matcher queryAll works 1`] = `
-Array [
+[
   <b
     title="greeting"
   >
@@ -1089,7 +1089,7 @@ exports[`DomTestingLibrary ByTitle function matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByTitle function matcher findAll works 1`] = `
-Array [
+[
   <b
     title="greeting"
   >
@@ -1107,7 +1107,7 @@ exports[`DomTestingLibrary ByTitle function matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByTitle function matcher getAll works 1`] = `
-Array [
+[
   <b
     title="greeting"
   >
@@ -1125,7 +1125,7 @@ exports[`DomTestingLibrary ByTitle function matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByTitle function matcher queryAll works 1`] = `
-Array [
+[
   <b
     title="greeting"
   >
@@ -1143,7 +1143,7 @@ exports[`DomTestingLibrary ByTitle regexp matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByTitle regexp matcher findAll works 1`] = `
-Array [
+[
   <b
     title="greeting"
   >
@@ -1161,7 +1161,7 @@ exports[`DomTestingLibrary ByTitle regexp matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByTitle regexp matcher getAll works 1`] = `
-Array [
+[
   <b
     title="greeting"
   >
@@ -1179,7 +1179,7 @@ exports[`DomTestingLibrary ByTitle regexp matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByTitle regexp matcher queryAll works 1`] = `
-Array [
+[
   <b
     title="greeting"
   >
@@ -1197,7 +1197,7 @@ exports[`DomTestingLibrary ByTitle string matcher find works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByTitle string matcher findAll works 1`] = `
-Array [
+[
   <b
     title="greeting"
   >
@@ -1215,7 +1215,7 @@ exports[`DomTestingLibrary ByTitle string matcher get works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByTitle string matcher getAll works 1`] = `
-Array [
+[
   <b
     title="greeting"
   >
@@ -1233,7 +1233,7 @@ exports[`DomTestingLibrary ByTitle string matcher query works 1`] = `
 `;
 
 exports[`DomTestingLibrary ByTitle string matcher queryAll works 1`] = `
-Array [
+[
   <b
     title="greeting"
   >
@@ -1263,26 +1263,26 @@ exports[`DomTestingLibrary getNodeText works 1`] = `"Hello,"`;
 exports[`DomTestingLibrary prettyDOM works 1`] = `
 "[36m<body>[39m
   [36m<b[39m
-    [33mtitle[39m=[32m\\"greeting\\"[39m
+    [33mtitle[39m=[32m"greeting"[39m
   [36m>[39m
     [0mHello,[0m
   [36m</b>[39m
   [36m<p[39m
-    [33mdata-testid[39m=[32m\\"world\\"[39m
+    [33mdata-testid[39m=[32m"world"[39m
   [36m>[39m
     [0m World![0m
   [36m</p>[39m
   [36m<input[39m
-    [33mplaceholder[39m=[32m\\"Enter something\\"[39m
-    [33mtype[39m=[32m\\"text\\"[39m
+    [33mplaceholder[39m=[32m"Enter something"[39m
+    [33mtype[39m=[32m"text"[39m
   [36m/>[39m
   [36m<input[39m
-    [33mtype[39m=[32m\\"text\\"[39m
-    [33mvalue[39m=[32m\\"Some value\\"[39m
+    [33mtype[39m=[32m"text"[39m
+    [33mvalue[39m=[32m"Some value"[39m
   [36m/>[39m
   [36m<img[39m
-    [33malt[39m=[32m\\"Alt text\\"[39m
-    [33msrc[39m=[32m\\"\\"[39m
+    [33malt[39m=[32m"Alt text"[39m
+    [33msrc[39m=[32m""[39m
   [36m/>[39m
 [36m</body>[39m"
 `;
@@ -1290,5 +1290,5 @@ exports[`DomTestingLibrary prettyDOM works 1`] = `
 exports[`DomTestingLibrary prettyDOM works with maxLength 1`] = `
 "[36m<body>[39m
   [36m<b[39m
-    [33mtitle[39m=[32m\\"gr..."
+    [33mtitle[39m=[32m"gr..."
 `;
