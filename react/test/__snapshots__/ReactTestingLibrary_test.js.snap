@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ReactTestingLibrary ByAltText findAllByAltText works 1`] = `
-Array [
+[
   <img
     alt="Incredibles 2 Poster"
     src="/incredibles-2.png"
@@ -17,7 +17,7 @@ exports[`ReactTestingLibrary ByAltText findByAltText works 1`] = `
 `;
 
 exports[`ReactTestingLibrary ByAltText getAllByAltText works 1`] = `
-Array [
+[
   <img
     alt="Incredibles 2 Poster"
     src="/incredibles-2.png"
@@ -33,7 +33,7 @@ exports[`ReactTestingLibrary ByAltText getByAltText works 1`] = `
 `;
 
 exports[`ReactTestingLibrary ByAltText queryAllByAltText works 1`] = `
-Array [
+[
   <img
     alt="Incredibles 2 Poster"
     src="/incredibles-2.png"
@@ -51,7 +51,7 @@ exports[`ReactTestingLibrary ByAltText queryByAltText works 1`] = `
 `;
 
 exports[`ReactTestingLibrary ByDisplayValue findAllByDisplayValue works 1`] = `
-Array [
+[
   <input
     id="lastName"
     type="text"
@@ -69,7 +69,7 @@ exports[`ReactTestingLibrary ByDisplayValue findByDisplayValue works 1`] = `
 `;
 
 exports[`ReactTestingLibrary ByDisplayValue getAllByDisplayValue works 1`] = `
-Array [
+[
   <input
     id="lastName"
     type="text"
@@ -87,7 +87,7 @@ exports[`ReactTestingLibrary ByDisplayValue getByDisplayValue works 1`] = `
 `;
 
 exports[`ReactTestingLibrary ByDisplayValue queryAllByDisplayValue works 1`] = `
-Array [
+[
   <input
     id="lastName"
     type="text"
@@ -107,7 +107,7 @@ exports[`ReactTestingLibrary ByDisplayValue queryByDisplayValue works 1`] = `
 `;
 
 exports[`ReactTestingLibrary ByLabelText findAllByLabelText works 1`] = `
-Array [
+[
   <input
     id="username-input"
   />,
@@ -121,7 +121,7 @@ exports[`ReactTestingLibrary ByLabelText findByLabelText works 1`] = `
 `;
 
 exports[`ReactTestingLibrary ByLabelText getAllByLabelText works 1`] = `
-Array [
+[
   <input
     id="username-input"
   />,
@@ -135,7 +135,7 @@ exports[`ReactTestingLibrary ByLabelText getByLabelText works 1`] = `
 `;
 
 exports[`ReactTestingLibrary ByLabelText queryAllByLabelText works 1`] = `
-Array [
+[
   <input
     id="username-input"
   />,
@@ -151,7 +151,7 @@ exports[`ReactTestingLibrary ByLabelText queryByLabelText works 1`] = `
 `;
 
 exports[`ReactTestingLibrary ByPlaceholderText findAllByPlaceholderText works 1`] = `
-Array [
+[
   <input
     placeholder="Username"
   />,
@@ -165,7 +165,7 @@ exports[`ReactTestingLibrary ByPlaceholderText findByPlaceholderText works 1`] =
 `;
 
 exports[`ReactTestingLibrary ByPlaceholderText getAllByPlaceholderText works 1`] = `
-Array [
+[
   <input
     placeholder="Username"
   />,
@@ -179,7 +179,7 @@ exports[`ReactTestingLibrary ByPlaceholderText getByPlaceholderText works 1`] = 
 `;
 
 exports[`ReactTestingLibrary ByPlaceholderText queryAllByPlaceholderText works 1`] = `
-Array [
+[
   <input
     placeholder="Username"
   />,
@@ -195,7 +195,7 @@ exports[`ReactTestingLibrary ByPlaceholderText queryByPlaceholderText works 1`] 
 `;
 
 exports[`ReactTestingLibrary ByRole findAllByRole works 1`] = `
-Array [
+[
   <button>
     Close dialog
   </button>,
@@ -209,7 +209,7 @@ exports[`ReactTestingLibrary ByRole findByRole works 1`] = `
 `;
 
 exports[`ReactTestingLibrary ByRole getAllByRole works 1`] = `
-Array [
+[
   <button>
     Close dialog
   </button>,
@@ -223,7 +223,7 @@ exports[`ReactTestingLibrary ByRole getByRole works 1`] = `
 `;
 
 exports[`ReactTestingLibrary ByRole queryAllByRole works 1`] = `
-Array [
+[
   <button>
     Close dialog
   </button>,
@@ -239,7 +239,7 @@ exports[`ReactTestingLibrary ByRole queryByRole works 1`] = `
 `;
 
 exports[`ReactTestingLibrary ByTestId findAllByTestId works 1`] = `
-Array [
+[
   <h1
     data-testid="h1-heading"
   >
@@ -257,7 +257,7 @@ exports[`ReactTestingLibrary ByTestId findByTestId works 1`] = `
 `;
 
 exports[`ReactTestingLibrary ByTestId getAllByTestId works 1`] = `
-Array [
+[
   <h1
     data-testid="h1-heading"
   >
@@ -275,7 +275,7 @@ exports[`ReactTestingLibrary ByTestId getByTestId works 1`] = `
 `;
 
 exports[`ReactTestingLibrary ByTestId queryAllByTestId works 1`] = `
-Array [
+[
   <h1
     data-testid="h1-heading"
   >
@@ -295,7 +295,7 @@ exports[`ReactTestingLibrary ByTestId queryByTestId works 1`] = `
 `;
 
 exports[`ReactTestingLibrary ByText findAllByText works 1`] = `
-Array [
+[
   <a
     href="/about"
   >
@@ -313,7 +313,7 @@ exports[`ReactTestingLibrary ByText findByText works 1`] = `
 `;
 
 exports[`ReactTestingLibrary ByText getAllByText works 1`] = `
-Array [
+[
   <a
     href="/about"
   >
@@ -331,7 +331,7 @@ exports[`ReactTestingLibrary ByText getByText works 1`] = `
 `;
 
 exports[`ReactTestingLibrary ByText queryAllByText works 1`] = `
-Array [
+[
   <a
     href="/about"
   >
@@ -351,7 +351,7 @@ exports[`ReactTestingLibrary ByText queryByText works 1`] = `
 `;
 
 exports[`ReactTestingLibrary ByTitle findAllByTitle works 1`] = `
-Array [
+[
   <span
     id="2"
     title="Delete"
@@ -367,7 +367,7 @@ exports[`ReactTestingLibrary ByTitle findByTitle works 1`] = `
 `;
 
 exports[`ReactTestingLibrary ByTitle getAllByTitle works 1`] = `
-Array [
+[
   <span
     id="2"
     title="Delete"
@@ -383,7 +383,7 @@ exports[`ReactTestingLibrary ByTitle getByTitle works 1`] = `
 `;
 
 exports[`ReactTestingLibrary ByTitle queryAllByTitle works 1`] = `
-Array [
+[
   <span
     id="2"
     title="Delete"
@@ -429,7 +429,7 @@ exports[`ReactTestingLibrary asFragment works 1`] = `
 `;
 
 exports[`ReactTestingLibrary render works 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>

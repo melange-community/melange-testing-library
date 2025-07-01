@@ -85,7 +85,14 @@ module ByRoleQuery: {
     "hidden": Js.undefined(bool),
     "level": Js.undefined(int),
     "pressed": Js.undefined(bool),
-    "name": Js.undefined(string),
+    "name":
+      Js.undefined(
+        [@mel.unwrap] [
+          | `Func((string, Dom.element) => bool)
+          | `RegExp(Js.Re.t)
+          | `Str(string)
+        ],
+      ),
     "normalizer": Js.undefined(string => string),
     "queryFallbacks": Js.undefined(bool),
     "selected": Js.undefined(bool),
@@ -100,7 +107,13 @@ module ByRoleQuery: {
       ~hidden: bool=?,
       ~level: int=?,
       ~pressed: bool=?,
-      ~name: string=?,
+      ~name:
+        [@mel.unwrap] [
+          | `Func((string, Dom.element) => bool)
+          | `RegExp(Js.Re.t)
+          | `Str(string)
+        ]
+          =?,
       ~normalizer: string => string=?,
       ~queryFallbacks: bool=?,
       ~selected: bool=?,
@@ -200,7 +213,10 @@ let waitForElement:
 
 let waitForElementToBeRemoved:
   (
-    ~callback: [ | `Func(unit => 'a) | `Value('a)],
+    ~callback: [
+      | `Func(unit => 'a)
+      | `Value('a)
+    ],
     ~options: WaitFor.options=?,
     unit
   ) =>
@@ -245,9 +261,9 @@ module Configure: {
 let configure:
   (
     ~update: [
-               | `Func(Configure.options => Configure.options)
-               | `Object(Configure.options)
-             ]
+      | `Func(Configure.options => Configure.options)
+      | `Object(Configure.options)
+    ]
   ) =>
   unit;
 
@@ -260,10 +276,10 @@ external getNodeText: Dom.element => string = "getNodeText";
 let getByLabelText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByLabelTextQuery.options=?,
     Dom.element
   ) =>
@@ -272,10 +288,10 @@ let getByLabelText:
 let getAllByLabelText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByLabelTextQuery.options=?,
     Dom.element
   ) =>
@@ -284,10 +300,10 @@ let getAllByLabelText:
 let queryByLabelText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByLabelTextQuery.options=?,
     Dom.element
   ) =>
@@ -296,10 +312,10 @@ let queryByLabelText:
 let queryAllByLabelText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByLabelTextQuery.options=?,
     Dom.element
   ) =>
@@ -308,10 +324,10 @@ let queryAllByLabelText:
 let findByLabelText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByLabelTextQuery.options=?,
     Dom.element
   ) =>
@@ -320,10 +336,10 @@ let findByLabelText:
 let findAllByLabelText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByLabelTextQuery.options=?,
     Dom.element
   ) =>
@@ -335,10 +351,10 @@ let findAllByLabelText:
 let getByPlaceholderText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByPlaceholderTextQuery.options=?,
     Dom.element
   ) =>
@@ -347,10 +363,10 @@ let getByPlaceholderText:
 let getAllByPlaceholderText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByPlaceholderTextQuery.options=?,
     Dom.element
   ) =>
@@ -359,10 +375,10 @@ let getAllByPlaceholderText:
 let queryByPlaceholderText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByPlaceholderTextQuery.options=?,
     Dom.element
   ) =>
@@ -371,10 +387,10 @@ let queryByPlaceholderText:
 let queryAllByPlaceholderText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByPlaceholderTextQuery.options=?,
     Dom.element
   ) =>
@@ -383,10 +399,10 @@ let queryAllByPlaceholderText:
 let findByPlaceholderText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByPlaceholderTextQuery.options=?,
     Dom.element
   ) =>
@@ -395,10 +411,10 @@ let findByPlaceholderText:
 let findAllByPlaceholderText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByPlaceholderTextQuery.options=?,
     Dom.element
   ) =>
@@ -410,10 +426,10 @@ let findAllByPlaceholderText:
 let getByText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByTextQuery.options=?,
     Dom.element
   ) =>
@@ -422,10 +438,10 @@ let getByText:
 let getAllByText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByTextQuery.options=?,
     Dom.element
   ) =>
@@ -434,10 +450,10 @@ let getAllByText:
 let queryByText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByTextQuery.options=?,
     Dom.element
   ) =>
@@ -446,10 +462,10 @@ let queryByText:
 let queryAllByText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByTextQuery.options=?,
     Dom.element
   ) =>
@@ -458,10 +474,10 @@ let queryAllByText:
 let findByText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByTextQuery.options=?,
     Dom.element
   ) =>
@@ -470,10 +486,10 @@ let findByText:
 let findAllByText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByTextQuery.options=?,
     Dom.element
   ) =>
@@ -485,10 +501,10 @@ let findAllByText:
 let getByAltText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByAltTextQuery.options=?,
     Dom.element
   ) =>
@@ -497,10 +513,10 @@ let getByAltText:
 let getAllByAltText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByAltTextQuery.options=?,
     Dom.element
   ) =>
@@ -509,10 +525,10 @@ let getAllByAltText:
 let queryByAltText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByAltTextQuery.options=?,
     Dom.element
   ) =>
@@ -521,10 +537,10 @@ let queryByAltText:
 let queryAllByAltText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByAltTextQuery.options=?,
     Dom.element
   ) =>
@@ -533,10 +549,10 @@ let queryAllByAltText:
 let findByAltText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByAltTextQuery.options=?,
     Dom.element
   ) =>
@@ -545,10 +561,10 @@ let findByAltText:
 let findAllByAltText:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByAltTextQuery.options=?,
     Dom.element
   ) =>
@@ -560,10 +576,10 @@ let findAllByAltText:
 let getByTitle:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByTitleQuery.options=?,
     Dom.element
   ) =>
@@ -572,10 +588,10 @@ let getByTitle:
 let getAllByTitle:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByTitleQuery.options=?,
     Dom.element
   ) =>
@@ -584,10 +600,10 @@ let getAllByTitle:
 let queryByTitle:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByTitleQuery.options=?,
     Dom.element
   ) =>
@@ -596,10 +612,10 @@ let queryByTitle:
 let queryAllByTitle:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByTitleQuery.options=?,
     Dom.element
   ) =>
@@ -608,10 +624,10 @@ let queryAllByTitle:
 let findByTitle:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByTitleQuery.options=?,
     Dom.element
   ) =>
@@ -620,10 +636,10 @@ let findByTitle:
 let findAllByTitle:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByTitleQuery.options=?,
     Dom.element
   ) =>
@@ -635,10 +651,10 @@ let findAllByTitle:
 let getByDisplayValue:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByDisplayValueQuery.options=?,
     Dom.element
   ) =>
@@ -647,10 +663,10 @@ let getByDisplayValue:
 let getAllByDisplayValue:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByDisplayValueQuery.options=?,
     Dom.element
   ) =>
@@ -659,10 +675,10 @@ let getAllByDisplayValue:
 let queryByDisplayValue:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByDisplayValueQuery.options=?,
     Dom.element
   ) =>
@@ -671,10 +687,10 @@ let queryByDisplayValue:
 let queryAllByDisplayValue:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByDisplayValueQuery.options=?,
     Dom.element
   ) =>
@@ -683,10 +699,10 @@ let queryAllByDisplayValue:
 let findByDisplayValue:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByDisplayValueQuery.options=?,
     Dom.element
   ) =>
@@ -695,10 +711,10 @@ let findByDisplayValue:
 let findAllByDisplayValue:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByDisplayValueQuery.options=?,
     Dom.element
   ) =>
@@ -708,75 +724,26 @@ let findAllByDisplayValue:
  * ByRole
  */
 let getByRole:
-  (
-    ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
-    ~options: ByRoleQuery.options=?,
-    Dom.element
-  ) =>
-  Dom.element;
+  (~role: string, ~options: ByRoleQuery.options=?, Dom.element) => Dom.element;
 
 let getAllByRole:
-  (
-    ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
-    ~options: ByRoleQuery.options=?,
-    Dom.element
-  ) =>
+  (~role: string, ~options: ByRoleQuery.options=?, Dom.element) =>
   array(Dom.element);
 
 let queryByRole:
-  (
-    ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
-    ~options: ByRoleQuery.options=?,
-    Dom.element
-  ) =>
+  (~role: string, ~options: ByRoleQuery.options=?, Dom.element) =>
   Js.null(Dom.element);
 
 let queryAllByRole:
-  (
-    ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
-    ~options: ByRoleQuery.options=?,
-    Dom.element
-  ) =>
+  (~role: string, ~options: ByRoleQuery.options=?, Dom.element) =>
   array(Dom.element);
 
 let findByRole:
-  (
-    ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
-    ~options: ByRoleQuery.options=?,
-    Dom.element
-  ) =>
+  (~role: string, ~options: ByRoleQuery.options=?, Dom.element) =>
   Js.Promise.t(Dom.element);
 
 let findAllByRole:
-  (
-    ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
-    ~options: ByRoleQuery.options=?,
-    Dom.element
-  ) =>
+  (~role: string, ~options: ByRoleQuery.options=?, Dom.element) =>
   Js.Promise.t(array(Dom.element));
 
 /**
@@ -785,10 +752,10 @@ let findAllByRole:
 let getByTestId:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByTestIdQuery.options=?,
     Dom.element
   ) =>
@@ -797,10 +764,10 @@ let getByTestId:
 let getAllByTestId:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByTestIdQuery.options=?,
     Dom.element
   ) =>
@@ -809,10 +776,10 @@ let getAllByTestId:
 let queryByTestId:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByTestIdQuery.options=?,
     Dom.element
   ) =>
@@ -821,10 +788,10 @@ let queryByTestId:
 let queryAllByTestId:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByTestIdQuery.options=?,
     Dom.element
   ) =>
@@ -833,10 +800,10 @@ let queryAllByTestId:
 let findByTestId:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByTestIdQuery.options=?,
     Dom.element
   ) =>
@@ -845,10 +812,10 @@ let findByTestId:
 let findAllByTestId:
   (
     ~matcher: [
-                | `Func((string, Dom.element) => bool)
-                | `RegExp(Js.Re.t)
-                | `Str(string)
-              ],
+      | `Func((string, Dom.element) => bool)
+      | `RegExp(Js.Re.t)
+      | `Str(string)
+    ],
     ~options: ByTestIdQuery.options=?,
     Dom.element
   ) =>
