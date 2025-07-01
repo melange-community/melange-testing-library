@@ -50,7 +50,7 @@ external rerender: (React.element, [@mel.this] renderResult) => unit =
   "rerender";
 
 [@mel.send]
-external asFragment: (unit, [@mel.this] renderResult) => Dom.element =
+external asFragment: (unit, [@mel.this] renderResult) => Dom.documentFragment =
   "asFragment";
 
 // ByLabelText
