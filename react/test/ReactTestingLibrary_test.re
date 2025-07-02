@@ -41,6 +41,8 @@ module Counter = {
 external unsafeAsElement: Dom.node => Dom.element = "%identity";
 [@mel.get] external firstChild: Dom.element => Dom.node = "firstChild";
 [@mel.get] external innerHTML: Dom.node => string = "innerHTML";
+[@mel.return nullable] [@mel.get]
+external getInputValue: Dom.element => option(string) = "value";
 
 describe("ReactTestingLibrary", () => {
   open ReactTestingLibrary;
@@ -783,5 +785,34 @@ describe("ReactTestingLibrary", () => {
       |> expect
       |> toEqual(Js.null),
     );
+  });
+
+  testPromise("simple input test - userEvent", () => {
+    let (let.await) = (promise, fn) => Js.Promise.then_(fn, promise);
+
+    DomTestingLibrary.configure(
+      ~update=
+        `Object(
+          DomTestingLibrary.Configure.makeOptions(~testIdAttribute="id", ()),
+        ),
+    );
+
+    let text = "wololoo";
+    let testId = "simple-input";
+    let container = render(<input id=testId />);
+    let.await input = findByTestId(~matcher=`Str(testId), container);
+    let _ =
+      FireEvent.change(
+        ~eventInit={
+          "target": {
+            "value": text,
+          },
+        },
+        input,
+      );
+    switch (getInputValue(input)) {
+    | Some(value) => Js.Promise.resolve(value->expect |> toEqual(text))
+    | None => Js.Promise.reject(Js.Exn.raiseError("Input value is None"))
+    };
   });
 });
