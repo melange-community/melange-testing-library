@@ -52,24 +52,6 @@ module WaitFor = {
     options;
 };
 
-module WaitForElement = {
-  type options = {
-    .
-    "container": Js.undefined(Dom.element),
-    "timeout": Js.undefined(int),
-  };
-
-  [@mel.obj]
-  external makeOptions:
-    (
-      ~container: Dom.element=?,
-      ~mutationObserverInit: MutationObserver.options=?,
-      ~timeout: int=?,
-      unit
-    ) =>
-    options;
-};
-
 [@mel.module "@testing-library/dom"]
 external _waitFor:
   (unit => unit, Js.undefined(WaitFor.options)) => Js.Promise.t('a) =

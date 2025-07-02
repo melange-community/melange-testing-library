@@ -182,23 +182,6 @@ module WaitFor: {
     ) =>
     options;
 };
-module WaitForElement: {
-  type options = {
-    .
-    "container": Js.undefined(Dom.element),
-    "timeout": Js.undefined(int),
-  };
-  [@mel.obj]
-  external makeOptions:
-    (
-      ~container: Dom.element=?,
-      ~mutationObserverInit: MutationObserver.options=?,
-      ~timeout: int=?,
-      unit
-    ) =>
-    options;
-};
-
 let waitFor:
   (~callback: unit => unit, ~options: WaitFor.options=?, unit) =>
   Js.Promise.t('a);
@@ -206,10 +189,6 @@ let waitFor:
 let waitForPromise:
   (~callback: unit => Js.Promise.t('a), ~options: WaitFor.options=?, unit) =>
   Js.Promise.t('b);
-
-let waitForElement:
-  (~callback: unit => 'a=?, ~options: WaitForElement.options=?, unit) =>
-  Js.Promise.t('a);
 
 let waitForElementToBeRemoved:
   (
