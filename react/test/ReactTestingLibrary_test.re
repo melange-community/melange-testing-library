@@ -41,6 +41,8 @@ module Counter = {
 external unsafeAsElement: Dom.node => Dom.element = "%identity";
 [@mel.get] external firstChild: Dom.element => Dom.node = "firstChild";
 [@mel.get] external innerHTML: Dom.node => string = "innerHTML";
+[@mel.return nullable] [@mel.get]
+external getInputValue: Dom.element => option(string) = "value";
 
 describe("ReactTestingLibrary", () => {
   open ReactTestingLibrary;
@@ -55,7 +57,13 @@ describe("ReactTestingLibrary", () => {
     </div>;
 
   test("render works", () =>
-    element |> render |> expect |> toMatchSnapshot
+    element
+    |> render
+    |> container
+    |> firstChild
+    |> unsafeAsElement
+    |> JestDom.expect
+    |> JestDom.toBeInTheDocument
   );
 
   // ByLabelText
@@ -70,24 +78,26 @@ describe("ReactTestingLibrary", () => {
       labelText
       |> render
       |> getByLabelText(~matcher=`Str("Username"))
-      |> expect
-      |> toMatchSnapshot
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("getAllByLabelText works", () =>
       labelText
       |> render
       |> getAllByLabelText(~matcher=`Str("Username"))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Array.unsafe_get(_, 0)
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("queryByLabelText works", () =>
       labelText
       |> render
       |> queryByLabelText(~matcher=`Str("Username"))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Null.getExn
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("queryByLabelText works (element not found)", () =>
@@ -95,15 +105,16 @@ describe("ReactTestingLibrary", () => {
       |> render
       |> queryByLabelText(~matcher=`Str("!@#$Username!@#$"))
       |> expect
-      |> toMatchSnapshot
+      |> toEqual(Js.null)
     );
 
     test("queryAllByLabelText works", () =>
       labelText
       |> render
       |> queryAllByLabelText(~matcher=`Str("Username"))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Array.unsafe_get(_, 0)
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     testPromise("findByLabelText works", () =>
@@ -111,7 +122,10 @@ describe("ReactTestingLibrary", () => {
       |> render
       |> findByLabelText(~matcher=`Str("Username"))
       |> Js.Promise.then_(result =>
-           result |> expect |> toMatchSnapshot |> Js.Promise.resolve
+           result
+           |> JestDom.expect
+           |> JestDom.toBeInTheDocument
+           |> Js.Promise.resolve
          )
     );
 
@@ -119,8 +133,12 @@ describe("ReactTestingLibrary", () => {
       labelText
       |> render
       |> findAllByLabelText(~matcher=`Str("Username"))
-      |> Js.Promise.then_(result =>
-           result |> expect |> toMatchSnapshot |> Js.Promise.resolve
+      |> Js.Promise.then_(many =>
+           many
+           |> Js.Array.unsafe_get(_, 0)
+           |> JestDom.expect
+           |> JestDom.toBeInTheDocument
+           |> Js.Promise.resolve
          )
     );
   });
@@ -137,24 +155,26 @@ describe("ReactTestingLibrary", () => {
       placeholderText
       |> render
       |> getByPlaceholderText(~matcher=`Str("Username"))
-      |> expect
-      |> toMatchSnapshot
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("getAllByPlaceholderText works", () =>
       placeholderText
       |> render
       |> getAllByPlaceholderText(~matcher=`Str("Username"))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Array.unsafe_get(_, 0)
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("queryByPlaceholderText works", () =>
       placeholderText
       |> render
       |> queryByPlaceholderText(~matcher=`Str("Username"))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Null.getExn
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("queryByPlaceholderText works (element not found)", () =>
@@ -162,15 +182,16 @@ describe("ReactTestingLibrary", () => {
       |> render
       |> queryByPlaceholderText(~matcher=`Str("!@#$Username!@#$"))
       |> expect
-      |> toMatchSnapshot
+      |> toEqual(Js.null)
     );
 
     test("queryAllByPlaceholderText works", () =>
       placeholderText
       |> render
       |> queryAllByPlaceholderText(~matcher=`Str("Username"))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Array.unsafe_get(_, 0)
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     testPromise("findByPlaceholderText works", () =>
@@ -178,7 +199,10 @@ describe("ReactTestingLibrary", () => {
       |> render
       |> findByPlaceholderText(~matcher=`Str("Username"))
       |> Js.Promise.then_(result =>
-           result |> expect |> toMatchSnapshot |> Js.Promise.resolve
+           result
+           |> JestDom.expect
+           |> JestDom.toBeInTheDocument
+           |> Js.Promise.resolve
          )
     );
 
@@ -186,8 +210,12 @@ describe("ReactTestingLibrary", () => {
       placeholderText
       |> render
       |> findAllByPlaceholderText(~matcher=`Str("Username"))
-      |> Js.Promise.then_(result =>
-           result |> expect |> toMatchSnapshot |> Js.Promise.resolve
+      |> Js.Promise.then_(many =>
+           many
+           |> Js.Array.unsafe_get(_, 0)
+           |> JestDom.expect
+           |> JestDom.toBeInTheDocument
+           |> Js.Promise.resolve
          )
     );
   });
@@ -201,24 +229,26 @@ describe("ReactTestingLibrary", () => {
       text
       |> render
       |> getByText(~matcher=`Str({j|About ℹ️|j}))
-      |> expect
-      |> toMatchSnapshot
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("getAllByText works", () =>
       text
       |> render
       |> getAllByText(~matcher=`Str({j|About ℹ️|j}))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Array.unsafe_get(_, 0)
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("queryByText works", () =>
       text
       |> render
       |> queryByText(~matcher=`Str({j|About ℹ️|j}))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Null.getExn
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("queryByText works (element not found)", () =>
@@ -226,15 +256,16 @@ describe("ReactTestingLibrary", () => {
       |> render
       |> queryByText(~matcher=`Str({j|!@#About ℹ️!@#|j}))
       |> expect
-      |> toMatchSnapshot
+      |> toEqual(Js.null)
     );
 
     test("queryAllByText works", () =>
       text
       |> render
       |> queryAllByText(~matcher=`Str({j|About ℹ️|j}))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Array.unsafe_get(_, 0)
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     testPromise("findByText works", () =>
@@ -242,7 +273,10 @@ describe("ReactTestingLibrary", () => {
       |> render
       |> findByText(~matcher=`Str({j|About ℹ️|j}))
       |> Js.Promise.then_(result =>
-           result |> expect |> toMatchSnapshot |> Js.Promise.resolve
+           result
+           |> JestDom.expect
+           |> JestDom.toBeInTheDocument
+           |> Js.Promise.resolve
          )
     );
 
@@ -250,8 +284,12 @@ describe("ReactTestingLibrary", () => {
       text
       |> render
       |> findAllByText(~matcher=`Str({j|About ℹ️|j}))
-      |> Js.Promise.then_(result =>
-           result |> expect |> toMatchSnapshot |> Js.Promise.resolve
+      |> Js.Promise.then_(many =>
+           many
+           |> Js.Array.unsafe_get(_, 0)
+           |> JestDom.expect
+           |> JestDom.toBeInTheDocument
+           |> Js.Promise.resolve
          )
     );
   });
@@ -268,24 +306,26 @@ describe("ReactTestingLibrary", () => {
       altText
       |> render
       |> getByAltText(~matcher=`Str("Incredibles 2 Poster"))
-      |> expect
-      |> toMatchSnapshot
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("getAllByAltText works", () =>
       altText
       |> render
       |> getAllByAltText(~matcher=`Str("Incredibles 2 Poster"))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Array.unsafe_get(_, 0)
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("queryByAltText works", () =>
       altText
       |> render
       |> queryByAltText(~matcher=`Str("Incredibles 2 Poster"))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Null.getExn
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("queryByAltText works (element not found)", () =>
@@ -293,15 +333,16 @@ describe("ReactTestingLibrary", () => {
       |> render
       |> queryByAltText(~matcher=`Str("!@#$Incredibles 2 Poster!@#$"))
       |> expect
-      |> toMatchSnapshot
+      |> toEqual(Js.null)
     );
 
     test("queryAllByAltText works", () =>
       altText
       |> render
       |> queryAllByAltText(~matcher=`Str("Incredibles 2 Poster"))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Array.unsafe_get(_, 0)
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     testPromise("findByAltText works", () =>
@@ -309,7 +350,10 @@ describe("ReactTestingLibrary", () => {
       |> render
       |> findByAltText(~matcher=`Str("Incredibles 2 Poster"))
       |> Js.Promise.then_(result =>
-           result |> expect |> toMatchSnapshot |> Js.Promise.resolve
+           result
+           |> JestDom.expect
+           |> JestDom.toBeInTheDocument
+           |> Js.Promise.resolve
          )
     );
 
@@ -317,8 +361,12 @@ describe("ReactTestingLibrary", () => {
       altText
       |> render
       |> findAllByAltText(~matcher=`Str("Incredibles 2 Poster"))
-      |> Js.Promise.then_(result =>
-           result |> expect |> toMatchSnapshot |> Js.Promise.resolve
+      |> Js.Promise.then_(many =>
+           many
+           |> Js.Array.unsafe_get(_, 0)
+           |> JestDom.expect
+           |> JestDom.toBeInTheDocument
+           |> Js.Promise.resolve
          )
     );
   });
@@ -338,24 +386,26 @@ describe("ReactTestingLibrary", () => {
       title
       |> render
       |> getByTitle(~matcher=`Str("Delete"))
-      |> expect
-      |> toMatchSnapshot
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("getAllByTitle works", () =>
       title
       |> render
       |> getAllByTitle(~matcher=`Str("Delete"))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Array.unsafe_get(_, 0)
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("queryByTitle works", () =>
       title
       |> render
       |> queryByTitle(~matcher=`Str("Delete"))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Null.getExn
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("queryByTitle works (element not found)", () =>
@@ -363,15 +413,16 @@ describe("ReactTestingLibrary", () => {
       |> render
       |> queryByTitle(~matcher=`Str("!@#$Delete!@#$"))
       |> expect
-      |> toMatchSnapshot
+      |> toEqual(Js.null)
     );
 
     test("queryAllByTitle works", () =>
       title
       |> render
       |> queryAllByTitle(~matcher=`Str("Delete"))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Array.unsafe_get(_, 0)
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     testPromise("findByTitle works", () =>
@@ -379,7 +430,10 @@ describe("ReactTestingLibrary", () => {
       |> render
       |> findByTitle(~matcher=`Str("Delete"))
       |> Js.Promise.then_(result =>
-           result |> expect |> toMatchSnapshot |> Js.Promise.resolve
+           result
+           |> JestDom.expect
+           |> JestDom.toBeInTheDocument
+           |> Js.Promise.resolve
          )
     );
 
@@ -387,8 +441,12 @@ describe("ReactTestingLibrary", () => {
       title
       |> render
       |> findAllByTitle(~matcher=`Str("Delete"))
-      |> Js.Promise.then_(result =>
-           result |> expect |> toMatchSnapshot |> Js.Promise.resolve
+      |> Js.Promise.then_(many =>
+           many
+           |> Js.Array.unsafe_get(_, 0)
+           |> JestDom.expect
+           |> JestDom.toBeInTheDocument
+           |> Js.Promise.resolve
          )
     );
   });
@@ -404,24 +462,26 @@ describe("ReactTestingLibrary", () => {
       title
       |> render
       |> getByDisplayValue(~matcher=`Str("ReasonML"))
-      |> expect
-      |> toMatchSnapshot
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("getAllByDisplayValue works", () =>
       title
       |> render
       |> getAllByDisplayValue(~matcher=`Str("ReasonML"))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Array.unsafe_get(_, 0)
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("queryByDisplayValue works", () =>
       title
       |> render
       |> queryByDisplayValue(~matcher=`Str("ReasonML"))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Null.getExn
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("queryByDisplayValue works (element not found)", () =>
@@ -429,15 +489,16 @@ describe("ReactTestingLibrary", () => {
       |> render
       |> queryByDisplayValue(~matcher=`Str("!@#$ReasonML!@#$"))
       |> expect
-      |> toMatchSnapshot
+      |> toEqual(Js.null)
     );
 
     test("queryAllByDisplayValue works", () =>
       title
       |> render
       |> queryAllByDisplayValue(~matcher=`Str("ReasonML"))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Array.unsafe_get(_, 0)
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     testPromise("findByDisplayValue works", () =>
@@ -445,7 +506,10 @@ describe("ReactTestingLibrary", () => {
       |> render
       |> findByDisplayValue(~matcher=`Str("ReasonML"))
       |> Js.Promise.then_(result =>
-           result |> expect |> toMatchSnapshot |> Js.Promise.resolve
+           result
+           |> JestDom.expect
+           |> JestDom.toBeInTheDocument
+           |> Js.Promise.resolve
          )
     );
 
@@ -453,8 +517,12 @@ describe("ReactTestingLibrary", () => {
       title
       |> render
       |> findAllByDisplayValue(~matcher=`Str("ReasonML"))
-      |> Js.Promise.then_(result =>
-           result |> expect |> toMatchSnapshot |> Js.Promise.resolve
+      |> Js.Promise.then_(many =>
+           many
+           |> Js.Array.unsafe_get(_, 0)
+           |> JestDom.expect
+           |> JestDom.toBeInTheDocument
+           |> Js.Promise.resolve
          )
     );
   });
@@ -471,24 +539,26 @@ describe("ReactTestingLibrary", () => {
       role
       |> render
       |> getByRole(~matcher=`Str("button"))
-      |> expect
-      |> toMatchSnapshot
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("getAllByRole works", () =>
       role
       |> render
       |> getAllByRole(~matcher=`Str("button"))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Array.unsafe_get(_, 0)
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("queryByRole works", () =>
       role
       |> render
       |> queryByRole(~matcher=`Str("button"))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Null.getExn
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("queryByRole works (element not found)", () =>
@@ -496,15 +566,16 @@ describe("ReactTestingLibrary", () => {
       |> render
       |> queryByRole(~matcher=`Str("!@#$button!@#$"))
       |> expect
-      |> toMatchSnapshot
+      |> toEqual(Js.null)
     );
 
     test("queryAllByRole works", () =>
       role
       |> render
       |> queryAllByRole(~matcher=`Str("button"))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Array.unsafe_get(_, 0)
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     testPromise("findByRole works", () =>
@@ -512,7 +583,10 @@ describe("ReactTestingLibrary", () => {
       |> render
       |> findByRole(~matcher=`Str("button"))
       |> Js.Promise.then_(result =>
-           result |> expect |> toMatchSnapshot |> Js.Promise.resolve
+           result
+           |> JestDom.expect
+           |> JestDom.toBeInTheDocument
+           |> Js.Promise.resolve
          )
     );
 
@@ -520,8 +594,12 @@ describe("ReactTestingLibrary", () => {
       role
       |> render
       |> findAllByRole(~matcher=`Str("button"))
-      |> Js.Promise.then_(result =>
-           result |> expect |> toMatchSnapshot |> Js.Promise.resolve
+      |> Js.Promise.then_(many =>
+           many
+           |> Js.Array.unsafe_get(_, 0)
+           |> JestDom.expect
+           |> JestDom.toBeInTheDocument
+           |> Js.Promise.resolve
          )
     );
   });
@@ -532,24 +610,26 @@ describe("ReactTestingLibrary", () => {
       element
       |> render
       |> getByTestId(~matcher=`Str("h1-heading"))
-      |> expect
-      |> toMatchSnapshot
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("getAllByTestId works", () =>
       element
       |> render
       |> getAllByTestId(~matcher=`Str("h1-heading"))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Array.unsafe_get(_, 0)
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("queryByTestId works", () =>
       element
       |> render
       |> queryByTestId(~matcher=`Str("h1-heading"))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Null.getExn
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     test("queryByTestId works (element not found)", () =>
@@ -557,15 +637,16 @@ describe("ReactTestingLibrary", () => {
       |> render
       |> queryByTestId(~matcher=`Str("!@#$h1-heading!@#$"))
       |> expect
-      |> toMatchSnapshot
+      |> toEqual(Js.null)
     );
 
     test("queryAllByTestId works", () =>
       element
       |> render
       |> queryAllByTestId(~matcher=`Str("h1-heading"))
-      |> expect
-      |> toMatchSnapshot
+      |> Js.Array.unsafe_get(_, 0)
+      |> JestDom.expect
+      |> JestDom.toBeInTheDocument
     );
 
     testPromise("findByTestId works", () =>
@@ -573,7 +654,10 @@ describe("ReactTestingLibrary", () => {
       |> render
       |> findByTestId(~matcher=`Str("h1-heading"))
       |> Js.Promise.then_(result =>
-           result |> expect |> toMatchSnapshot |> Js.Promise.resolve
+           result
+           |> JestDom.expect
+           |> JestDom.toBeInTheDocument
+           |> Js.Promise.resolve
          )
     );
 
@@ -581,8 +665,12 @@ describe("ReactTestingLibrary", () => {
       element
       |> render
       |> findAllByTestId(~matcher=`Str("h1-heading"))
-      |> Js.Promise.then_(result =>
-           result |> expect |> toMatchSnapshot |> Js.Promise.resolve
+      |> Js.Promise.then_(many =>
+           many
+           |> Js.Array.unsafe_get(_, 0)
+           |> JestDom.expect
+           |> JestDom.toBeInTheDocument
+           |> Js.Promise.resolve
          )
     );
   });
@@ -669,21 +757,21 @@ describe("ReactTestingLibrary", () => {
     check("hey");
   });
 
-  test("asFragment works", () =>
-    element |> render |> asFragment() |> expect |> toMatchSnapshot
-  );
+  test("asFragment works", () => {
+    let fragment = element |> render |> asFragment();
+    let textContent = Webapi.Dom.DocumentFragment.textContent(fragment);
+    expect(textContent) |> toEqual("Heading");
+  });
 
   test("act works", () => {
     let result = <Counter /> |> render;
 
-    act(() =>
-      result |> getByText(~matcher=`Str("+")) |> FireEvent.click |> ignore
-    );
+    act(() => result |> getByText(~matcher=`Str("+")) |> FireEvent.click);
 
     result
     |> getByText(~matcher=`Str("Count: 1"))
-    |> expect
-    |> toMatchSnapshot;
+    |> JestDom.expect
+    |> JestDom.toBeInTheDocument;
   });
 
   testPromise("Cleaunp, (element not found)", () => {
@@ -695,7 +783,36 @@ describe("ReactTestingLibrary", () => {
       result
       |> queryByTestId(~matcher=`Str("h1-heading"))
       |> expect
-      |> toMatchSnapshot,
+      |> toEqual(Js.null),
     );
+  });
+
+  testPromise("simple input test - userEvent", () => {
+    let (let.await) = (promise, fn) => Js.Promise.then_(fn, promise);
+
+    DomTestingLibrary.configure(
+      ~update=
+        `Object(
+          DomTestingLibrary.Configure.makeOptions(~testIdAttribute="id", ()),
+        ),
+    );
+
+    let text = "wololoo";
+    let testId = "simple-input";
+    let container = render(<input id=testId />);
+    let.await input = findByTestId(~matcher=`Str(testId), container);
+    let _ =
+      FireEvent.change(
+        ~eventInit={
+          "target": {
+            "value": text,
+          },
+        },
+        input,
+      );
+    switch (getInputValue(input)) {
+    | Some(value) => Js.Promise.resolve(value->expect |> toEqual(text))
+    | None => Js.Promise.reject(Js.Exn.raiseError("Input value is None"))
+    };
   });
 });

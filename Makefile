@@ -23,7 +23,7 @@ install: ## Install development dependencies
 	yarn
 	opam update
 	opam install -y . --deps-only --with-test
-	opam exec opam-check-npm-deps
+	opam exec -- opam-check-npm-deps --dry-run
 
 .PHONY: build
 build: ## Build the project
@@ -48,3 +48,11 @@ format-check: ## Checks if format is correct
 .PHONY: watch
 watch: ## Watch for the filesystem and rebuild on every change
 	$(DUNE) build --watch
+
+.PHONY: test
+test: ## Run the tests
+	$(DUNE) runtest --no-buffer
+
+.PHONY: test-watch
+test-watch: ## Run the tests and watch for changes
+	$(DUNE) runtest --watch

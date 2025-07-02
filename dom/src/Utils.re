@@ -52,24 +52,6 @@ module WaitFor = {
     options;
 };
 
-module WaitForElement = {
-  type options = {
-    .
-    "container": Js.undefined(Dom.element),
-    "timeout": Js.undefined(int),
-  };
-
-  [@mel.obj]
-  external makeOptions:
-    (
-      ~container: Dom.element=?,
-      ~mutationObserverInit: MutationObserver.options=?,
-      ~timeout: int=?,
-      unit
-    ) =>
-    options;
-};
-
 [@mel.module "@testing-library/dom"]
 external _waitFor:
   (unit => unit, Js.undefined(WaitFor.options)) => Js.Promise.t('a) =
@@ -88,21 +70,13 @@ let waitForPromise = (~callback, ~options=?, ()) =>
   _waitForPromise(callback, Js.Undefined.fromOption(options));
 
 [@mel.module "@testing-library/dom"]
-external _waitForElement:
-  (Js.undefined(unit => 'a), Js.undefined(WaitForElement.options)) =>
-  Js.Promise.t('a) =
-  "waitForElement";
-
-let waitForElement = (~callback=?, ~options=?, ()) =>
-  _waitForElement(
-    Js.Undefined.fromOption(callback),
-    Js.Undefined.fromOption(options),
-  );
-
-[@mel.module "@testing-library/dom"]
 external _waitForElementToBeRemoved:
   (
-    ~callback: [@mel.unwrap] [ | `Func(unit => 'a) | `Value('a)],
+    ~callback:
+      [@mel.unwrap] [
+        | `Func(unit => 'a)
+        | `Value('a)
+      ],
     Js.undefined(WaitFor.options)
   ) =>
   Js.Promise.t(unit) =
