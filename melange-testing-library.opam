@@ -14,6 +14,7 @@ depends: [
   "reason-react"
   "melange-jest" {with-test}
   "opam-check-npm-deps" {with-test}
+  "melange-webapi" {with-test}
   "bisect_ppx" {with-test & >= "2.5.0"}
   "odoc" {with-doc}
 ]
