@@ -8,20 +8,7 @@
       forAllSystems = f: nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed (system:
         let
           pkgs = nixpkgs.legacyPackages.${system}.extend (self: super: {
-            ocamlPackages = super.ocaml-ng.ocamlPackages_5_1.overrideScope (oself: osuper:
-              with oself;
-              {
-                bisect_ppx = osuper.bisect_ppx.overrideAttrs (o: {
-                  src = super.fetchFromGitHub {
-                    owner = "aantron";
-                    repo = "bisect_ppx";
-                    rev = "a14c5b5cd4564d2992dd1b14238922029bc1b1d7";
-                    hash = "sha256-zu4YZO9QZdhIa+0IF0KMnPDQJGNUz2+oaFjaWLY7dn0=";
-                  };
-                  nativeBuildInputs = o.nativeBuildInputs ++ [ melange ];
-                  propagatedBuildInputs = o.propagatedBuildInputs ++ [ melange ];
-                });
-              });
+            ocamlPackages = super.ocaml-ng.ocamlPackages_5_4;
           });
         in
         f pkgs);
@@ -72,6 +59,9 @@
               ocamlformat
               merlin
               reason
+              bisect_ppx
+              melange-jest
+              melange-webapi
             ]);
             inherit buildInputs;
           };
