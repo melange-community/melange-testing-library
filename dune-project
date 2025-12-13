@@ -1,4 +1,6 @@
-(lang dune 3.8)
+(lang dune 3.18)
+
+(maintenance_intent "(latest)")
 
 (using melange 0.1)
 
@@ -21,7 +23,8 @@
 
 (package
  (name melange-testing-library)
- (synopsis "Melange bindings for testing-library (dom-testing-library and react-testing-library)")
+ (synopsis
+  "Melange bindings for testing-library (dom-testing-library and react-testing-library)")
  (depends
   ocaml
   (melange
