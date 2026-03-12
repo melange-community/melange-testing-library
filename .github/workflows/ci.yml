@@ -59,10 +59,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
-      - name: Use OCaml 5.1.x
+      - name: Use OCaml 5.4.1
         uses: ocaml/setup-ocaml@v3
         with:
-          ocaml-compiler: 5.1.x
+          ocaml-compiler: 5.4.1
 
       - name: Install dependencies
         run: make install
