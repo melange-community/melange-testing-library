@@ -1,7 +1,8 @@
 depexts: [
-  ["@testing-library/react"] {npm-version = "^11.1.0"}
-  ["@testing-library/dom"] {npm-version = "^7.26.3"}
+  ["@testing-library/react"] {npm-version = "^16.3.0"}
+  ["@testing-library/dom"] {npm-version = "^10.4.0"}
+  ["@testing-library/jest-dom"] {npm-version = "^6.6.3"}
 ]
 pin-depends: [
-  [ "bisect_ppx.dev"        "git+https://github.com/jchavarri/bisect_ppx.git#a0c2375ca20beceb55e53776e03812def3bc32ba" ]
+  [ "bisect_ppx.dev" "git+https://github.com/jchavarri/bisect_ppx.git#a0c2375ca20beceb55e53776e03812def3bc32ba" ]
 ]

@@ -23,7 +23,7 @@ install: ## Install development dependencies
 	yarn
 	opam update
 	opam install -y . --deps-only --with-test
-	opam exec opam-check-npm-deps
+	opam exec -- opam-check-npm-deps --dry-run
 
 .PHONY: build
 build: ## Build the project
