@@ -32,8 +32,9 @@
   reason-react
   (melange-webapi :with-test)
   (melange-jest :with-test)
-  (opam-check-npm-deps :with-test) ; todo: use with-dev-setup once opam 2.2 is out
-  (bisect_ppx
-   (and
-    :with-test
-    (>= "2.5.0")))))
+  (opam-check-npm-deps :with-dev-setup)
+  ;(bisect_ppx
+  ; (and
+  ;  :with-test
+  ;  (>= "2.5.0")))
+))

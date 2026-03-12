@@ -7,6 +7,7 @@
   melange-webapi
   melange-jest.jest
   melange-jest.jest-dom
-  bisect_ppx.runtime_melange)
+  ; bisect_ppx.runtime_melange
+  )
  (preprocess
   (pps melange.ppx)))
