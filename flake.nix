@@ -3,75 +3,110 @@
 
   inputs.nixpkgs.url = "github:nix-ocaml/nix-overlays";
 
-  outputs = { self, nixpkgs }:
+  outputs =
+    { self, nixpkgs }:
     let
-      forAllSystems = f: nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed (system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system}.extend (self: super: {
-            ocamlPackages = super.ocaml-ng.ocamlPackages_5_4;
-          });
-        in
-        f pkgs);
+      forAllSystems =
+        f:
+        nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed (
+          system:
+          let
+            pkgs = nixpkgs.legacyPackages.${system}.extend (
+              self: super: {
+                ocamlPackages = super.ocaml-ng.ocamlPackages_5_4;
+              }
+            );
+          in
+          f pkgs
+        );
     in
     {
-      packages = forAllSystems (pkgs:
+      packages = forAllSystems (
+        pkgs:
         let
-          inherit (pkgs) nodejs_latest;
+          inherit (pkgs) nodejs_24;
 
-          melange-testing-library = with pkgs.ocamlPackages; buildDunePackage {
-            pname = "melange-testing-library";
-            version = "dev";
+          melange-testing-library =
+            with pkgs.ocamlPackages;
+            buildDunePackage {
+              pname = "melange-testing-library";
+              version = "dev";
 
-            src =
-              let fs = pkgs.lib.fileset; in
-              fs.toSource {
-                root = ./.;
-                fileset = fs.unions [
-                  ./dune-project
-                  ./dune
-                  ./dom
-                  ./react
-                  ./melange-testing-library.opam
-                ];
-              };
+              src =
+                let
+                  fs = pkgs.lib.fileset;
+                in
+                fs.toSource {
+                  root = ./.;
+                  fileset = fs.unions [
+                    ./dune-project
+                    ./dune
+                    ./dom
+                    ./react
+                    ./melange-testing-library.opam
+                  ];
+                };
 
-
-            nativeBuildInputs = with pkgs.ocamlPackages; [ melange reason ];
-            nativeCheckInputs = [ nodejs_latest ];
-            checkInputs = [ bisect_ppx melange-jest melange-webapi ];
-            doCheck = false;
-            propagatedBuildInputs = with pkgs.ocamlPackages; [ melange reason-react ];
-          };
+              nativeBuildInputs = with pkgs.ocamlPackages; [
+                melange
+                reason
+              ];
+              nativeCheckInputs = [ nodejs_24 ];
+              checkInputs = [
+                bisect_ppx
+                melange-jest
+                melange-webapi
+              ];
+              doCheck = false;
+              propagatedBuildInputs = with pkgs.ocamlPackages; [
+                melange
+                reason-react
+              ];
+            };
         in
         {
           inherit melange-testing-library;
           default = melange-testing-library;
-        });
+        }
+      );
 
-      devShells = forAllSystems (pkgs:
+      devShells = forAllSystems (
+        pkgs:
         let
-          mkShell = { buildInputs ? [ ] }: pkgs.mkShell {
-            inputsFrom = [ self.packages.${pkgs.system}.melange-testing-library ];
-            nativeBuildInputs = with pkgs; [
-              yarn
-              nodejs_latest
-            ] ++ (with pkgs.ocamlPackages; [
-              ocamlformat
-              merlin
-              reason
-              bisect_ppx
-              melange-jest
-              melange-webapi
-            ]);
-            inherit buildInputs;
-          };
+          mkShell =
+            {
+              buildInputs ? [ ],
+            }:
+            pkgs.mkShell {
+              inputsFrom = [ self.packages.${pkgs.stdenv.hostPlatform.system}.melange-testing-library ];
+              nativeBuildInputs =
+                with pkgs;
+                [
+                  yarn
+                  nodejs_24
+                ]
+                ++ (with pkgs.ocamlPackages; [
+                  ocamlformat
+                  merlin
+                  reason
+                  bisect_ppx
+                  melange-jest
+                  melange-webapi
+                ]);
+              inherit buildInputs;
+            };
         in
         {
           default = mkShell { };
           release = mkShell {
-            buildInputs = with pkgs; [ cacert curl ocamlPackages.dune-release git ];
+            buildInputs = with pkgs; [
+              cacert
+              curl
+              ocamlPackages.dune-release
+              git
+            ];
           };
-        })
-      ;
+        }
+      );
     };
 }
