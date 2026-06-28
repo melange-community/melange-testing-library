@@ -52,7 +52,7 @@ describe("ReactTestingLibrary", () => {
     <div style={ReactDOM.Style.make(~color="rebeccapurple", ())}>
       {React.cloneElement(
          <h1> {React.string("Heading")} </h1>,
-         {"data-testid": "h1-heading"},
+         { "data-testid": "h1-heading" },
        )}
     </div>;
 
